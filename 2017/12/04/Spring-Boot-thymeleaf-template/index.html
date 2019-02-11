@@ -5,15 +5,19 @@
   
 
   
-  <title>Archives: 2019 | Harvin Yang</title>
+  <title>Spring Boot thymeleaf template | Harvin Yang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Harvin Yang">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="自从来公司后都没用过jsp当界面渲染了,因为前后端分离不是很好,反而模板引擎用的比较多,thymeleaf最大的优势后缀为html,就是只需要浏览器就可以展现页面了,还有就是thymeleaf可以很好的和spring集成.下面开始学习. 1.引入依赖maven中直接引入1234&amp;lt;dependency&amp;gt;  &amp;lt;groupId&amp;gt;org.springframework.boot&amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot thymeleaf template">
+<meta property="og:url" content="http://yoursite.com/2017/12/04/Spring-Boot-thymeleaf-template/index.html">
 <meta property="og:site_name" content="Harvin Yang">
+<meta property="og:description" content="自从来公司后都没用过jsp当界面渲染了,因为前后端分离不是很好,反而模板引擎用的比较多,thymeleaf最大的优势后缀为html,就是只需要浏览器就可以展现页面了,还有就是thymeleaf可以很好的和spring集成.下面开始学习. 1.引入依赖maven中直接引入1234&amp;lt;dependency&amp;gt;  &amp;lt;groupId&amp;gt;org.springframework.boot&amp;l">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-11T13:46:21.004Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Harvin Yang">
+<meta name="twitter:title" content="Spring Boot thymeleaf template">
+<meta name="twitter:description" content="自从来公司后都没用过jsp当界面渲染了,因为前后端分离不是很好,反而模板引擎用的比较多,thymeleaf最大的优势后缀为html,就是只需要浏览器就可以展现页面了,还有就是thymeleaf可以很好的和spring集成.下面开始学习. 1.引入依赖maven中直接引入1234&amp;lt;dependency&amp;gt;  &amp;lt;groupId&amp;gt;org.springframework.boot&amp;l">
   
     <link rel="alternate" href="/atom.xml" title="Harvin Yang" type="application/atom+xml">
   
@@ -60,34 +64,59 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/02/11/三表关联查询/" class="archive-article-date">
-  <time datetime="2019-02-11T13:46:21.060Z" itemprop="datePublished">Feb 11</time>
+        <section id="main"><article id="post-Spring-Boot-thymeleaf-template" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/04/Spring-Boot-thymeleaf-template/" class="article-date">
+  <time datetime="2017-12-04T09:27:40.000Z" itemprop="datePublished">2017-12-04</time>
 </a>
-      
-    </header>
+    
   </div>
-</article>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-  
-    </div></section>
+    <h1 class="article-title" itemprop="name">
+      Spring Boot thymeleaf template
+    </h1>
   
 
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>自从来公司后都没用过jsp当界面渲染了,因为前后端分离不是很好,反而模板引擎用的比较多,thymeleaf最大的优势后缀为html,就是只需要浏览器就可以展现页面了,还有就是thymeleaf可以很好的和spring集成.下面开始学习.</p>
+<h1 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1.引入依赖"></a>1.引入依赖</h1><h3 id="maven中直接引入"><a href="#maven中直接引入" class="headerlink" title="maven中直接引入"></a>maven中直接引入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>可以查看依赖关系,发现spring-boot-starter-thymeleaf下面已经包括了spring-boot-starter-web,所以可以把spring-boot-starter-web的依赖去掉.</p>
+<h1 id="2-配置视图解析器"><a href="#2-配置视图解析器" class="headerlink" title="2.配置视图解析器"></a>2.配置视图解析器</h1><p>spring-boot很多配置都有默认配置,比如默认页面映射路径为<br>classpath:/templates/*.html<br>同样静态文件路径为<br>classpath:/static/</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/04/Spring-Boot-thymeleaf-template/" data-id="cjs0e5i53000464wgzlwzd52y" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/07/Java轻量级模板引擎Thymeleaf/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java轻量级模板引擎Thymeleaf
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
 
 </section>
         

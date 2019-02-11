@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>shodan | Harvin Yang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是 Shodan？ 首先，Shodan 是一个搜索引擎，但它与 Google 这种搜索网址的搜索引擎不同，Shodan 是用来搜索网络空间中在线设备的，你可以通过 Shodan 搜索指定的设备，或者搜索特定类型的设备，其中 Shodan 上最受欢迎的搜索内容是：webcam，linksys，cisco，netgear，SCADA等等。  那么 Shodan 是怎么工作的呢？Shodan 通过扫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shodan">
+<meta property="og:url" content="http://yoursite.com/2018/03/04/shodan/index.html">
+<meta property="og:site_name" content="Harvin Yang">
+<meta property="og:description" content="什么是 Shodan？ 首先，Shodan 是一个搜索引擎，但它与 Google 这种搜索网址的搜索引擎不同，Shodan 是用来搜索网络空间中在线设备的，你可以通过 Shodan 搜索指定的设备，或者搜索特定类型的设备，其中 Shodan 上最受欢迎的搜索内容是：webcam，linksys，cisco，netgear，SCADA等等。  那么 Shodan 是怎么工作的呢？Shodan 通过扫">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-11T13:46:20.944Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shodan">
+<meta name="twitter:description" content="什么是 Shodan？ 首先，Shodan 是一个搜索引擎，但它与 Google 这种搜索网址的搜索引擎不同，Shodan 是用来搜索网络空间中在线设备的，你可以通过 Shodan 搜索指定的设备，或者搜索特定类型的设备，其中 Shodan 上最受欢迎的搜索内容是：webcam，linksys，cisco，netgear，SCADA等等。  那么 Shodan 是怎么工作的呢？Shodan 通过扫">
+  
+    <link rel="alternate" href="/atom.xml" title="Harvin Yang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Harvin Yang</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-shodan" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/04/shodan/" class="article-date">
+  <time datetime="2018-03-04T14:10:25.000Z" itemprop="datePublished">2018-03-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      shodan
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是-Shodan？"><a href="#什么是-Shodan？" class="headerlink" title="什么是 Shodan？"></a>什么是 Shodan？</h1><blockquote>
+<p>首先，Shodan 是一个搜索引擎，但它与 Google 这种搜索网址的搜索引擎不同，Shodan 是用来搜索网络空间中在线设备的，你可以通过 Shodan 搜索指定的设备，或者搜索特定类型的设备，其中 Shodan 上最受欢迎的搜索内容是：webcam，linksys，cisco，netgear，SCADA等等。</p>
+</blockquote>
+<p>那么 Shodan 是怎么工作的呢？Shodan 通过扫描全网设备并抓取解析各个设备返回的 banner 信息，通过了解这些信息 Shodan 就能得知网络中哪一种 Web 服务器是最受欢迎的，或是网络中到底存在多少可匿名登录的 FTP 服务器。（现在也可以看到shodan也加入了新工具）</p>
+<p>####基本用法</p>
+<blockquote>
+<p>这里就像是用 Google 一样，在主页的搜索框中输入想要搜索的内容即可，例如下面我搜索 “SSH”：</p>
+</blockquote>
+<p>上图的搜索结果包含两个部分，左侧是大量的汇总数据包括：</p>
+<ul>
+<li>Results map – 搜索结果展示地图</li>
+<li>Top services (Ports) – 使用最多的服务/端口</li>
+<li>Top organizations (ISPs) – 使用最多的组织/ISP</li>
+<li>Top operating systems – 使用最多的操作系统</li>
+<li>Top products (Software name) – 使用最多的产品/软件名称</li>
+</ul>
+<p>随后，在中间的主页面我们可以看到包含如下的搜索结果：</p>
+<ul>
+<li>IP 地址</li>
+<li>主机名</li>
+<li>ISP</li>
+<li>该条目的收录收录时间</li>
+<li>该主机位于的国家</li>
+<li>Banner 信息</li>
+<li>想要了解每个条目的具体信息，只需要点击每个条目下方的 details 按钮即可。此时，URL 会变成这种格式 <a href="https://www.shodan.io/host/[IP]，所以我们也可以通过直接访问指定的" target="_blank" rel="noopener">https://www.shodan.io/host/[IP]，所以我们也可以通过直接访问指定的</a> IP 来查看详细信息。</li>
+</ul>
+<p>可以从顶部在地图中看到主机的物理地址，从左侧了解到主机的相关信息，右侧则包含目标主机的端口列表及其详细信息。</p>
+<p>####使用搜索过滤</p>
+<blockquote>
+<p>如果像前面单纯只使用关键字直接进行搜索，搜索结果可能不尽人意，那么此时我们就需要使用一些特定的命令对搜索结果进行过滤，常见用的过滤命令如下所示：</p>
+</blockquote>
+<p>hostname：搜索指定的主机或域名，例如 hostname:”google”<br>port：搜索指定的端口或服务，例如 port:”21”<br>country：搜索指定的国家，例如 country:”CN”<br>city：搜索指定的城市，例如 city:”Hefei”<br>org：搜索指定的组织或公司，例如 org:”google”<br>isp：搜索指定的ISP供应商，例如 isp:”China Telecom”<br>product：搜索指定的操作系统/软件/平台，例如 product:”Apache httpd”<br>version：搜索指定的软件版本，例如 version:”1.6.2”<br>geo：搜索指定的地理位置，参数为经纬度，例如 geo:”31.8639, 117.2808”<br>before/after：搜索指定收录时间前后的数据，格式为dd-mm-yy，例如 before:”11-11-15”<br>net：搜索指定的IP地址或子网，例如 net:”210.45.240.0/24”</p>
+<h4 id="搜索实例"><a href="#搜索实例" class="headerlink" title="搜索实例"></a>搜索实例</h4><p>查找位于合肥的 Apache 服务器：<br><code>apache city:”Hefei”</code></p>
+<p>查找位于国内的 Nginx 服务器：<br><code>nginx country:”CN”</code></p>
+<p>查找 GWS(Google Web Server) 服务器：<br><code>“Server: gws” hostname:”google”</code></p>
+<p>查找指定网段的华为设备：<br><code>huawei net:”61.191.146.0/24”</code></p>
+<p>如上通过在基本关键字后增加指定的过滤关键字，能快速的帮助发现我们感兴趣的内容。当然，还有更快速更有意思的方法，那就是点击 Shodan 搜索栏右侧的 “Explore” 按钮，就会得到很多别人分享的搜索语法，你问我别人分享的语法有什么好玩的？那咱们就随便来看看吧：</p>
+<p>咱们随便选取一个名为“NetSureveillance Web”的用户分享语法，从下面的描述信息我们基本就能得知这就是一个弱密码的漏洞，为了方便测试让我们把语法在增加一个国家的过滤信息，最终语法如下：</p>
+<p><code>Server: uc-httpd 1.0.0 200 OK Country:”CN”</code></p>
+<p>现在让我们随便选取一个页面进去输入，使用admin账号和空密码就能顺利进入了：）</p>
+<h4 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h4><p>Shodan 不仅可以查找网络设备，它还具有其他相当不错的功能。</p>
+<p>Exploits：每次查询完后，点击页面上的 “Exploits” 按钮，Shodan 就会帮我们查找针对不同平台、不同类型可利用的 exploits。当然也可以通过直接访问网址来自行搜索：<a href="https://exploits.shodan.io/welcome；" target="_blank" rel="noopener">https://exploits.shodan.io/welcome；</a></p>
+<p>地图：每次查询完后，点击页面上的 “Maps” 按钮，Shodan 会将查询结果可视化的展示在地图当中；</p>
+<p>报表：每次查询完后，点击页面上的 “Create Report” 按钮，Shodan 就会帮我们生成一份精美的报表，这是天天要写文档兄弟的一大好帮手啊；</p>
+<h5 id="命令行下使用-Shodan"><a href="#命令行下使用-Shodan" class="headerlink" title="命令行下使用 Shodan"></a>命令行下使用 Shodan</h5><p>Shodan 是由官方提供的 Python 库的，项目位于：<a href="https://github.com/achillean/shodan-python" target="_blank" rel="noopener">https://github.com/achillean/shodan-python</a></p>
+<ul>
+<li>安装</li>
+</ul>
+<p><code>pip install shodan</code><br>或者</p>
+<p><code><br>git clone <a href="https://github.com/achillean/shodan-python.git" target="_blank" rel="noopener">https://github.com/achillean/shodan-python.git</a> &amp;&amp; cd shodan-python<br>python setup.py install<br></code></p>
+<ul>
+<li>安装完后我们先看下帮助信息：</li>
+</ul>
+<pre>➜  ~ shodan -h
+Usage: shodan [OPTIONS] COMMAND [ARGS]...
+Options:
+  -h, --help  Show this message and exit.
+Commands:
+  alert       Manage the network alerts for your account  # 管理账户的网络提示
+  convert     Convert the given input data file into a...  # 转换输入文件
+  count       Returns the number of results for a search  # 返回查询结果数量
+  download    Download search results and save them in a...  # 下载查询结果到文件
+  honeyscore  Check whether the IP is a honeypot or not.  # 检查 IP 是否为蜜罐
+  host        View all available information for an IP...  # 显示一个 IP 所有可用的详细信息
+  info        Shows general information about your account  # 显示账户的一般信息
+  init        Initialize the Shodan command-line  # 初始化命令行
+  myip        Print your external IP address  # 输出用户当前公网IP
+  parse       Extract information out of compressed JSON...  # 解析提取压缩的JSON信息，即使用download下载的数据
+  scan        Scan an IP/ netblock using Shodan.  # 使用 Shodan 扫描一个IP或者网段
+  search      Search the Shodan database  # 查询 Shodan 数据库
+  stats       Provide summary information about a search...  # 提供搜索结果的概要信息
+  stream      Stream data in real-time.  # 实时显示流数据
+</pre>
+
+<ul>
+<li><p>常用示例</p>
+<pre>init</pre>
+</li>
+<li><p>初始化命令行工具。</p>
+</li>
+</ul>
+<pre>➜  ~ shodan init [API_Key]
+Successfully initialized
+count</pre>
+
+<ul>
+<li>返回查询的结果数量。</li>
+</ul>
+<pre>➜  ~ shodan count microsoft iis 6.0
+575862
+</pre>
+
+<ul>
+<li>download</li>
+</ul>
+<p>将搜索结果下载到一个文件中，文件中的每一行都是 JSON 格式存储的目标 banner 信息。默认情况下，该命令只会下载1000条结果，如果想下载更多结果需要增加 –limit 参数。</p>
+<ul>
+<li>parse</li>
+</ul>
+<p>我们可以使用 parse 来解析之前下载数据，它可以帮助我们过滤出自己感兴趣的内容，也可以用来将下载的数据格式从 JSON 转换成 CSV 等等其他格式，当然更可以用作传递给其他处理脚本的管道。例如，我们想将上面下载的数据以CSV格式输出IP地址、端口号和组织名称：</p>
+<pre>➜  ~ shodan parse --fields ip_str,port,org --separator , microsoft-data.json.gz
+Shodan
+</pre>
+
+<ul>
+<li>host</li>
+</ul>
+<p>查看指定主机的相关信息，如地理位置信息，开放端口，甚至是否存在某些漏洞等信息。</p>
+<ul>
+<li>search</li>
+</ul>
+<p>直接将查询结果展示在命令行中，默认情况下只显示IP、端口号、主机名和HTTP数据。当然我们也可以通过使用 –fields 来自定义显示内容，例如，我们只显示IP、端口号、组织名称和主机名：</p>
+<pre>➜  ~ shodan search --fields ip_str,port,org,hostnames microsoft iis 6.0
+Shodan
+</pre>
+
+<h5 id="代码中使用-Shodan-库"><a href="#代码中使用-Shodan-库" class="headerlink" title="代码中使用 Shodan 库"></a>代码中使用 Shodan 库</h5><p>还是使用上一节讲到的 shodan 库，安装方式这里不在阐述了。同样的，在使用 shodan 库之前需要初始化连接 API，代码如下：</p>
+<p><code>import shodan<br>SHODAN_API_KEY = “API_Key”<br>api = shodan.Shodan(SHODAN_API_KEY)<br></code><br>随后，我们就可以搜索数据了，示例代码片如下：<br><code><br>try:</code></p>
+<pre><code># 搜索 Shodan
+results = api.search(&apos;apache&apos;)
+# 显示结果
+print &apos;Results found: %s&apos; % results[&apos;total&apos;]
+for result in results[&apos;matches&apos;]:
+        print result[&apos;ip_str&apos;]
+</code></pre><p>except shodan.APIError, e:<br>    print ‘Error: %s’ % e<br>   </p>
+<h5 id="Shodan工具"><a href="#Shodan工具" class="headerlink" title="Shodan工具"></a>Shodan工具</h5><p>这里 Shodan.search() 会返回类似如下格式的 JSON 数据：</p>
+<pre>
+{
+        'total': 8669969,
+        'matches': [
+                {
+                        'data': 'HTTP/1.0 200 OK\r\nDate: Mon, 08 Nov 2010 05:09:59 GMT\r\nSer...',
+                        'hostnames': ['pl4t1n.de'],
+                        'ip': 3579573318,
+                        'ip_str': '89.110.147.239',
+                        'os': 'FreeBSD 4.4',
+                        'port': 80,
+                        'timestamp': '2014-01-15T05:49:56.283713'
+                },
+                ...
+        ]
+}
+</pre>
+
+<p>#####常用 Shodan 库函数<br><code><br>shodan.Shodan(key) ：初始化连接API<br>Shodan.count(query, facets=None)：返回查询结果数量<br>Shodan.host(ip, history=False)：返回一个IP的详细信息<br>Shodan.ports()：返回Shodan可查询的端口号<br>Shodan.protocols()：返回Shodan可查询的协议<br>Shodan.services()：返回Shodan可查询的服务<br>Shodan.queries(page=1, sort=’timestamp’, order=’desc’)：查询其他用户分享的查询规则<br>Shodan.scan(ips, force=False)：使用Shodan进行扫描，ips可以为字符或字典类型<br>Shodan.search(query, page=1, limit=None, offset=None, facets=None, minify=True)：查询Shodan数据<br></code><br>至此，本文基本告于段落，买了 Shodan Membership 的各位朋友们可以好好的去 Happy 啦。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/04/shodan/" data-id="cjs0e5i5l000l64wghzlledme" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/20/bootstrap-Table-configuration/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          bootstrap-Table-configuration
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/26/Intellij-IDEA-无法加载修改后asset文件/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Intellij-IDEA-无法加载修改后asset文件</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-溢出/">node,溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thymeleaf/">thymeleaf</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/node-溢出/" style="font-size: 10px;">node,溢出</a> <a href="/tags/thymeleaf/" style="font-size: 10px;">thymeleaf</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/11/三表关联查询/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/30/mosqitto_mosquitto.conf_配置文件/">mosquitto 配置文件说明</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/13/react-跨域-api/">react-跨域-api</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/mysql升级8-0后遇到的坑/">mysql升级8.0后遇到的坑</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/02/react-lifecycle/">react-lifecycle</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Harvin Yang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

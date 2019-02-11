@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>jquery_prop_attr_different | Harvin Yang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近项目中需要用jquery判断input里checkbox是否被选中，发现用attr（）获取不到复选框改变后的状态，最后查资料发现jQuery 1.6以后新增加了prop（）方法，借用官方的一段描述就是：The difference between attributes and properties can be important in specific situations. Before">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jquery_prop_attr_different">
+<meta property="og:url" content="http://yoursite.com/2018/01/08/jquery-prop-attr-different/index.html">
+<meta property="og:site_name" content="Harvin Yang">
+<meta property="og:description" content="最近项目中需要用jquery判断input里checkbox是否被选中，发现用attr（）获取不到复选框改变后的状态，最后查资料发现jQuery 1.6以后新增加了prop（）方法，借用官方的一段描述就是：The difference between attributes and properties can be important in specific situations. Before">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://files.jb51.net/file_images/article/201512/2015121890526239.gif?201511189536">
+<meta property="og:image" content="http://files.jb51.net/file_images/article/201512/2015121890549489.gif">
+<meta property="og:updated_time" content="2019-02-11T13:46:20.268Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jquery_prop_attr_different">
+<meta name="twitter:description" content="最近项目中需要用jquery判断input里checkbox是否被选中，发现用attr（）获取不到复选框改变后的状态，最后查资料发现jQuery 1.6以后新增加了prop（）方法，借用官方的一段描述就是：The difference between attributes and properties can be important in specific situations. Before">
+<meta name="twitter:image" content="http://files.jb51.net/file_images/article/201512/2015121890526239.gif?201511189536">
+  
+    <link rel="alternate" href="/atom.xml" title="Harvin Yang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Harvin Yang</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-jquery-prop-attr-different" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/08/jquery-prop-attr-different/" class="article-date">
+  <time datetime="2018-01-08T10:08:21.000Z" itemprop="datePublished">2018-01-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jquery_prop_attr_different
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近项目中需要用jquery判断input里checkbox是否被选中，发现用attr（）获取不到复选框改变后的状态，最后查资料发现jQuery 1.6以后新增加了prop（）方法，借用官方的一段描述就是：<br>The difference between attributes and properties can be important in specific situations. Before jQuery 1.6, the .attr() method sometimes took property values into account when retrieving some attributes, which could cause inconsistent behavior. As of jQuery 1.6, the .prop() method provides a way to explicitly retrieve property values, while .attr() retrieves attributes.<br>上面翻译过来大概就是：prop（）处理来自节点对象自带的属性，它包含了很多原生的property；而attr（）来自对象的attributes，可能是我们在元素节点上添加属性节点才会有的。<br>简单的来说就是：<br>对于HTML元素本身就带有的固有属性，在处理时，使用prop方法。<br>对于HTML元素我们自己自定义的DOM属性，在处理时，使用attr方法。</p>
+<p> 第一个例子：元素的固有属性以及自定义属性说明<br>&lt;a href=&quot;<a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a> target=&quot;_self&quot; class=”btn”&gt;百度&lt;/a&gt;<br> 这个例子里&lt;a&gt;元素的DOM属性有“href、target和class”，这些属性就是&lt;a&gt;元素本身就带有的属性，也是W3C标准里就包含有这几个属性，或者说在IDE里能够智能提示出的属性，这些就叫做固有属性。处理这些属性时，建议使用prop方法。<br>&lt;a href=”#” id=”link1” action=”delete”&gt;删除&lt;/a&gt;<br>这个例子里&lt;a&gt;元素的DOM属性有“href、id和action”，很明显，前两个是固有属性，而后面一个“action”属性是我们自己自定义上去的，&lt;a&gt;元素本身是没有这个属性的。这种就是自定义的DOM属性。处理这些属性时，建议使用attr方法。使用prop方法取值和设置属性值时，都会返回undefined值。<br>第二个例子：prop（）与attr（）在表单应用上的区别<br>先来看一段用attr（）方法代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">  &lt;title&gt; attr() vs prop()&lt;/title&gt;</span><br><span class="line"> &lt;/head&gt;</span><br><span class="line"> &lt;body&gt;</span><br><span class="line">  &lt;h3&gt;用attr（）判断是否选中&lt;/h3&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; id=&quot;input01&quot; /&gt;我是第一个复选框A&lt;br /&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; id=&quot;input02&quot; checked=&quot;checked&quot;/&gt;我是第二个复选框B&lt;br /&gt;</span><br><span class="line">  &lt;input type=&quot;button&quot; id=&quot;button01&quot; value=&quot;获取A的checked状态&quot; /&gt;</span><br><span class="line">  &lt;input type=&quot;button&quot; id=&quot;button02&quot; value=&quot;获取B的checked状态&quot; /&gt;</span><br><span class="line">  &lt;script src=&quot;js/jquery-1.11.0.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">   $(function()&#123;</span><br><span class="line">    $(&quot;#button01&quot;).click(function()&#123;</span><br><span class="line">     var $state01=$(&quot;#input01&quot;).attr(&quot;checked&quot;);</span><br><span class="line">     alert($state01);</span><br><span class="line">    &#125;)</span><br><span class="line">    $(&quot;#button02&quot;).click(function()&#123;</span><br><span class="line">     var $state02=$(&quot;#input02&quot;).attr(&quot;checked&quot;);</span><br><span class="line">     alert($state02);</span><br><span class="line">    &#125;)</span><br><span class="line">   &#125;)</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>上面这段程序的测试结果是：用attr（）获取不到用户选中的状态，它只返回表单的初始值。<br><img src="http://files.jb51.net/file_images/article/201512/2015121890526239.gif?201511189536" alt=""><br> 再来看一段用prop（）方法代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">  &lt;title&gt; attr() vs prop()&lt;/title&gt;</span><br><span class="line"> &lt;/head&gt;</span><br><span class="line"> &lt;body&gt;</span><br><span class="line">  &lt;h3&gt;用prop（）判断是否选中&lt;/h3&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; id=&quot;input01&quot; /&gt;我是第一个复选框A&lt;br /&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; id=&quot;input02&quot; checked=&quot;checked&quot;/&gt;我是第二个复选框B&lt;br /&gt;</span><br><span class="line">  &lt;input type=&quot;button&quot; id=&quot;button01&quot; value=&quot;获取A的checked状态&quot; /&gt;</span><br><span class="line">  &lt;input type=&quot;button&quot; id=&quot;button02&quot; value=&quot;获取B的checked状态&quot; /&gt;</span><br><span class="line">  &lt;script src=&quot;js/jquery-1.11.0.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">   $(function()&#123;</span><br><span class="line">    $(&quot;#button01&quot;).click(function()&#123;</span><br><span class="line">     var $state01=$(&quot;#input01&quot;).prop(&quot;checked&quot;);</span><br><span class="line">     alert($state01);</span><br><span class="line">    &#125;)</span><br><span class="line">    $(&quot;#button02&quot;).click(function()&#123;</span><br><span class="line">     var $state02=$(&quot;#input02&quot;).prop(&quot;checked&quot;);</span><br><span class="line">     alert($state02);</span><br><span class="line">    &#125;)</span><br><span class="line">   &#125;)</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>上面这段程序的测试结果是：用prop（）可以实时获取用户的选中与取消操作状态。<br><img src="http://files.jb51.net/file_images/article/201512/2015121890549489.gif" alt=""><br>因此我总结的差别就是：property记录的值会按照用户操作实时更新，而attribute记录的都是初始值，仅代表本人观点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/08/jquery-prop-attr-different/" data-id="cjs0e5i5c000c64wgmxsiw7nd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/19/check-name-repeat/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          check_name_repeat
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/27/jstree-custom-icon/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">jstree_custom_icon</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-溢出/">node,溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thymeleaf/">thymeleaf</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/node-溢出/" style="font-size: 10px;">node,溢出</a> <a href="/tags/thymeleaf/" style="font-size: 10px;">thymeleaf</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/11/三表关联查询/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/30/mosqitto_mosquitto.conf_配置文件/">mosquitto 配置文件说明</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/13/react-跨域-api/">react-跨域-api</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/mysql升级8-0后遇到的坑/">mysql升级8.0后遇到的坑</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/02/react-lifecycle/">react-lifecycle</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Harvin Yang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

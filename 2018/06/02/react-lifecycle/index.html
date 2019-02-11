@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>react-lifecycle | Harvin Yang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="React 声明周期  组件在初始化时会触发5个钩子函数：1、getDefaultProps()  设置默认的props，也可以用dufaultProps设置组件的默认属性。  2、getInitialState()  在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this.state。此时可以访问this.props。  3、componentWill">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-lifecycle">
+<meta property="og:url" content="http://yoursite.com/2018/06/02/react-lifecycle/index.html">
+<meta property="og:site_name" content="Harvin Yang">
+<meta property="og:description" content="React 声明周期  组件在初始化时会触发5个钩子函数：1、getDefaultProps()  设置默认的props，也可以用dufaultProps设置组件的默认属性。  2、getInitialState()  在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this.state。此时可以访问this.props。  3、componentWill">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://blog.tinma.cc/archives/react-lifecycle.png">
+<meta property="og:updated_time" content="2019-02-11T13:46:20.672Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react-lifecycle">
+<meta name="twitter:description" content="React 声明周期  组件在初始化时会触发5个钩子函数：1、getDefaultProps()  设置默认的props，也可以用dufaultProps设置组件的默认属性。  2、getInitialState()  在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this.state。此时可以访问this.props。  3、componentWill">
+<meta name="twitter:image" content="http://blog.tinma.cc/archives/react-lifecycle.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Harvin Yang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Harvin Yang</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-react-lifecycle" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/02/react-lifecycle/" class="article-date">
+  <time datetime="2018-06-02T13:45:14.000Z" itemprop="datePublished">2018-06-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      react-lifecycle
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="React-声明周期"><a href="#React-声明周期" class="headerlink" title="React 声明周期"></a>React 声明周期</h3><p><img src="http://blog.tinma.cc/archives/react-lifecycle.png" alt=""> </p>
+<h5 id="组件在初始化时会触发5个钩子函数："><a href="#组件在初始化时会触发5个钩子函数：" class="headerlink" title="组件在初始化时会触发5个钩子函数："></a>组件在初始化时会触发5个钩子函数：</h5><p>1、getDefaultProps()</p>
+<blockquote>
+<p>设置默认的props，也可以用dufaultProps设置组件的默认属性。</p>
+</blockquote>
+<p>2、getInitialState()</p>
+<blockquote>
+<p>在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this.state。此时可以访问this.props。</p>
+</blockquote>
+<p>3、componentWillMount()</p>
+<blockquote>
+<p>组件初始化时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state。</p>
+</blockquote>
+<p>4、 render()</p>
+<blockquote>
+<p>react最重要的步骤，创建虚拟dom，进行diff算法，更新dom树都在此进行。此时就不能更改state了。</p>
+</blockquote>
+<p>5、componentDidMount()</p>
+<blockquote>
+<p>组件渲染之后调用，可以通过this.getDOMNode()获取和操作dom节点，只调用一次。</p>
+</blockquote>
+<h5 id="在更新时也会触发5个钩子函数："><a href="#在更新时也会触发5个钩子函数：" class="headerlink" title="在更新时也会触发5个钩子函数："></a>在更新时也会触发5个钩子函数：</h5><p>6、componentWillReceivePorps(nextProps)</p>
+<blockquote>
+<p>组件初始化时不调用，组件接受新的props时调用。</p>
+</blockquote>
+<p>7、shouldComponentUpdate(nextProps, nextState)</p>
+<blockquote>
+<p>react性能优化非常重要的一环。组件接受新的state或者props时调用，我们可以设置在此对比前后两个props和state是否相同，如果相同则返回false阻止更新，因为相同的属性状态一定会生成相同的dom树，这样就不需要创造新的dom树和旧的dom树进行diff算法对比，节省大量性能，尤其是在dom结构复杂的时候。不过调用this.forceUpdate会跳过此步骤。</p>
+</blockquote>
+<p>8、componentWillUpdate(nextProps, nextState)</p>
+<blockquote>
+<p>组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state</p>
+</blockquote>
+<p>9、render()</p>
+<blockquote>
+<p>不多说</p>
+</blockquote>
+<p>10、componentDidUpdate()</p>
+<blockquote>
+<p>组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点。</p>
+</blockquote>
+<p>还有一个卸载钩子函数</p>
+<p>11、componentWillUnmount()</p>
+<blockquote>
+<p>组件将要卸载时调用，一些事件监听和定时器需要在此时清除。</p>
+</blockquote>
+<p>以上可以看出来react总共有10个周期函数（render重复一次），这个10个函数可以满足我们所有对组件操作的需求，利用的好可以提高开发效率和组件性能。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/02/react-lifecycle/" data-id="cjs0e5i5i000i64wgo2fcvjb2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/05/mysql升级8-0后遇到的坑/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          mysql升级8.0后遇到的坑
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/02/MQTT-linux_安装部署/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Moquitto 服务器配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-溢出/">node,溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thymeleaf/">thymeleaf</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/node-溢出/" style="font-size: 10px;">node,溢出</a> <a href="/tags/thymeleaf/" style="font-size: 10px;">thymeleaf</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/11/三表关联查询/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/30/mosqitto_mosquitto.conf_配置文件/">mosquitto 配置文件说明</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/13/react-跨域-api/">react-跨域-api</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/mysql升级8-0后遇到的坑/">mysql升级8.0后遇到的坑</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/02/react-lifecycle/">react-lifecycle</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Harvin Yang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

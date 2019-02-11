@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>mysql升级8.0后遇到的坑 | Harvin Yang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="听说mysql8的性能提升了很多，对于我这种喜欢把所有软件升级到最新版的人来说，二话不说直接升级。(因为用户不多所以就是这么任性)。升级的过程不可能一帆风顺，本文记录一些遇到的坑，希望对大家有所帮助。 坑一首先在配置mysql的yum源的rpm包的时候报了如下的错。  $ rpm-Uvh http ://repo.mysql.com/mysql80-community- release-el7-1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql升级8.0后遇到的坑">
+<meta property="og:url" content="http://yoursite.com/2018/06/05/mysql升级8-0后遇到的坑/index.html">
+<meta property="og:site_name" content="Harvin Yang">
+<meta property="og:description" content="听说mysql8的性能提升了很多，对于我这种喜欢把所有软件升级到最新版的人来说，二话不说直接升级。(因为用户不多所以就是这么任性)。升级的过程不可能一帆风顺，本文记录一些遇到的坑，希望对大家有所帮助。 坑一首先在配置mysql的yum源的rpm包的时候报了如下的错。  $ rpm-Uvh http ://repo.mysql.com/mysql80-community- release-el7-1">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-11T13:46:20.548Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql升级8.0后遇到的坑">
+<meta name="twitter:description" content="听说mysql8的性能提升了很多，对于我这种喜欢把所有软件升级到最新版的人来说，二话不说直接升级。(因为用户不多所以就是这么任性)。升级的过程不可能一帆风顺，本文记录一些遇到的坑，希望对大家有所帮助。 坑一首先在配置mysql的yum源的rpm包的时候报了如下的错。  $ rpm-Uvh http ://repo.mysql.com/mysql80-community- release-el7-1">
+  
+    <link rel="alternate" href="/atom.xml" title="Harvin Yang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Harvin Yang</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mysql升级8-0后遇到的坑" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/05/mysql升级8-0后遇到的坑/" class="article-date">
+  <time datetime="2018-06-05T07:02:35.000Z" itemprop="datePublished">2018-06-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mysql升级8.0后遇到的坑
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>听说mysql8的性能提升了很多，对于我这种喜欢把所有软件升级到最新版的人来说，二话不说直接升级。(因为用户不多所以就是这么任性)。升级的过程不可能一帆风顺，本文记录一些遇到的坑，希望对大家有所帮助。</p>
+<h4 id="坑一"><a href="#坑一" class="headerlink" title="坑一"></a>坑一</h4><p>首先在配置mysql的yum源的rpm包的时候报了如下的错。</p>
+<blockquote>
+<p>$ rpm-Uvh http ://repo.mysql.com/mysql80-community- release-el7-1.noarch.rpm<br>error: Failed dependencies :<br>mysql57-community- release conflicts with mysql80-community- release-el7-1.noarch<br>mysql.png</p>
+</blockquote>
+<p><strong>解决方法一：</strong>使用rpm -qa 查找已安装包</p>
+<blockquote>
+<p>$ rpm -qa | grep mysql<br>mysql57-community- release-el7-11.noarch</p>
+</blockquote>
+<p>然后卸载对应包</p>
+<blockquote>
+<p>$ rpm-e–nodeps mysql57-community- release-el7-11.noarch</p>
+</blockquote>
+<p><strong>解决方法二：</strong>增加–nodeps –force 参数</p>
+<blockquote>
+<p>$  rpm-Uvh http ://repo.mysql.com/mysql80-community- release-el7-1.noarch.rpm –nodeps –force</p>
+</blockquote>
+<h4 id="坑二"><a href="#坑二" class="headerlink" title="坑二"></a>坑二</h4><p>安装完成后进入数据库show databases;、或者尝试更改权限时报错</p>
+<blockquote>
+<p>ERROR 1449 (HY000): The user specified as a definer (‘mysql.infoschema‘@’localhost’) does not exist<br>Table ‘mysql.role_edges’ doesn’t exist</p>
+</blockquote>
+<p><strong>解决方法</strong></p>
+<blockquote>
+<p>mysql_upgrade -u root -p;</p>
+</blockquote>
+<h4 id="坑三"><a href="#坑三" class="headerlink" title="坑三"></a>坑三</h4><p>在客户端成功连接数据库之后，发现项目里的pdo连接mysql又报错了。</p>
+<blockquote>
+<p>Next PDOException: SQLSTATE[HY000] [2054] The server requested authentication method unknown to the client [caching_sha2_password] in /vendor/yiisoft/yii2/db/Connection.php:687</p>
+</blockquote>
+<p>这个错可能是mysql默认使用caching_sha2_password作为默认的身份验证插件，而不再是mysql_native_password，但是客户端暂时不支持这个插件导致的。官方文档说明</p>
+<blockquote>
+<p>In MySQL 8.0, caching_sha2_password is the default authentication plugin rather than mysql_native_password. For information about the implications of this change for server operation and compatibility of the server with clients and connectors, see caching_sha2_password as the Preferred Authentication Plugin.</p>
+</blockquote>
+<p>在MySQL 8.0中，caching_sha2_password是默认的身份验证插件，而不是mysql_native_password。有关此更改对服务器操作的影响以及服务器与客户端和连接器的兼容性的信息，请参阅caching_sha2_password作为首选身份验证插件。</p>
+<p><strong>解决方法</strong></p>
+<p>编辑my.cnf文件，更改默认的身份认证插件。</p>
+<blockquote>
+<p>$ vi /etc/my.cnf</p>
+</blockquote>
+<p>在[mysqld]中添加下边的代码</p>
+<blockquote>
+<p>default_authentication_plugin=mysql_native_password</p>
+</blockquote>
+<p>然后重启mysql</p>
+<blockquote>
+<p>$ service mysqld restart</p>
+</blockquote>
+<p>网站终于正常打开了。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/05/mysql升级8-0后遇到的坑/" data-id="cjs0e5i5f000g64wgkeyvxv61" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/13/react-跨域-api/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          react-跨域-api
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/02/react-lifecycle/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">react-lifecycle</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-溢出/">node,溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thymeleaf/">thymeleaf</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/node-溢出/" style="font-size: 10px;">node,溢出</a> <a href="/tags/thymeleaf/" style="font-size: 10px;">thymeleaf</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/11/三表关联查询/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/30/mosqitto_mosquitto.conf_配置文件/">mosquitto 配置文件说明</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/13/react-跨域-api/">react-跨域-api</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/mysql升级8-0后遇到的坑/">mysql升级8.0后遇到的坑</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/02/react-lifecycle/">react-lifecycle</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Harvin Yang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -5,15 +5,19 @@
   
 
   
-  <title>Archives: 2019 | Harvin Yang</title>
+  <title>Intellij-IDEA-无法加载修改后asset文件 | Harvin Yang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Harvin Yang">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content=" 解决 IntelliJ IDEA 无法热加载 Spring Boot 模板文件和静态资源文件一 IntelliJ IDEA 配置快捷键Ctrl + Alt + S打开设置面板 &amp;gt; build &amp;gt; compiler，勾选Build project automatically选项    快捷键Ctrl + Shift + A查找registry命令在查找到的registry命令通过鼠标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intellij-IDEA-无法加载修改后asset文件">
+<meta property="og:url" content="http://yoursite.com/2018/02/26/Intellij-IDEA-无法加载修改后asset文件/index.html">
 <meta property="og:site_name" content="Harvin Yang">
+<meta property="og:description" content=" 解决 IntelliJ IDEA 无法热加载 Spring Boot 模板文件和静态资源文件一 IntelliJ IDEA 配置快捷键Ctrl + Alt + S打开设置面板 &amp;gt; build &amp;gt; compiler，勾选Build project automatically选项    快捷键Ctrl + Shift + A查找registry命令在查找到的registry命令通过鼠标">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-11T13:46:20.128Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Harvin Yang">
+<meta name="twitter:title" content="Intellij-IDEA-无法加载修改后asset文件">
+<meta name="twitter:description" content=" 解决 IntelliJ IDEA 无法热加载 Spring Boot 模板文件和静态资源文件一 IntelliJ IDEA 配置快捷键Ctrl + Alt + S打开设置面板 &amp;gt; build &amp;gt; compiler，勾选Build project automatically选项    快捷键Ctrl + Shift + A查找registry命令在查找到的registry命令通过鼠标">
   
     <link rel="alternate" href="/atom.xml" title="Harvin Yang" type="application/atom+xml">
   
@@ -60,34 +64,76 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/02/11/三表关联查询/" class="archive-article-date">
-  <time datetime="2019-02-11T13:46:21.060Z" itemprop="datePublished">Feb 11</time>
+        <section id="main"><article id="post-Intellij-IDEA-无法加载修改后asset文件" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/26/Intellij-IDEA-无法加载修改后asset文件/" class="article-date">
+  <time datetime="2018-02-26T03:08:33.000Z" itemprop="datePublished">2018-02-26</time>
 </a>
-      
-    </header>
+    
   </div>
-</article>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-  
-    </div></section>
+    <h1 class="article-title" itemprop="name">
+      Intellij-IDEA-无法加载修改后asset文件
+    </h1>
   
 
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p></p>
+<h3 id="解决-IntelliJ-IDEA-无法热加载-Spring-Boot-模板文件和静态资源文件"><a href="#解决-IntelliJ-IDEA-无法热加载-Spring-Boot-模板文件和静态资源文件" class="headerlink" title="解决 IntelliJ IDEA 无法热加载 Spring Boot 模板文件和静态资源文件"></a>解决 IntelliJ IDEA 无法热加载 Spring Boot 模板文件和静态资源文件</h3><h4 id="一"><a href="#一" class="headerlink" title="一"></a>一</h4><ol>
+<li>IntelliJ IDEA 配置<br>快捷键Ctrl + Alt + S打开设置面板 &gt; build &gt; compiler，勾选Build project automatically选项</li>
+</ol>
+<hr>
+<ol start="2">
+<li>快捷键Ctrl + Shift + A查找registry命令<br>在查找到的registry命令通过鼠标双击或敲回车键，在弹出的面板中搜索关键字automake，找到并勾选compiler.automake.allow.when.app.running选项<br>配置完成后，IntelliJ IDEA 可以热加载静态资源文件了。但是模板文件仍然还不能热加载。</li>
+</ol>
+<h4 id="二"><a href="#二" class="headerlink" title="二"></a>二</h4><h5 id="添加-Spring-Boot-Dev-Tools-支持"><a href="#添加-Spring-Boot-Dev-Tools-支持" class="headerlink" title="添加 Spring Boot Dev Tools 支持"></a>添加 Spring Boot Dev Tools 支持</h5><p>在 pom.xml 中添加如下依赖声明：</p>
+<pre><code>&lt;dependency&gt;
+&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+&lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+&lt;optional&gt;true&lt;/optional&gt;
+</code></pre><p></p>
+<p>Spring Boot Dev Tools 的作用：</p>
+<p>视图或资源的任何更改都可以直接在浏览器中看到，无需重新启动，只需刷新浏览器即可。<br>对代码的任何更改将自动重新启动 Spring 容器。<br>至此，就可以完美的解决 IntelliJ IDEA 无法热加载模板文件和静态资源文件的问题了。并且，当你修改或编写 Java 代码时，也是能够热加载的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/02/26/Intellij-IDEA-无法加载修改后asset文件/" data-id="cjs0e5i4t000064wgze0u1agx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/04/shodan/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          shodan
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/24/bootstrap-switch-checked/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">bootstrap-switch-checked</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         

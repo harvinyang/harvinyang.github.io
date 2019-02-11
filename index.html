@@ -62,10 +62,46 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-三表关联查询" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/15/hello-world/" class="article-date">
-  <time datetime="2019-01-15T07:54:05.860Z" itemprop="datePublished">2019-01-15</time>
+    <a href="/2019/02/11/三表关联查询/" class="article-date">
+  <time datetime="2019-02-11T13:46:21.060Z" itemprop="datePublished">2019-02-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2>从三表中关联查询</h2>
+
+<p>从三表中查询出watermeter表中assetcode最后一次获取数据的内容</p>
+<p>station 表结构 站点数据表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">id	bigint(20)	NO	PRI		auto_increment</span><br><span class="line">tid	bigint(20)	NO			</span><br><span class="line">name	varchar(50)	YES			</span><br><span class="line">protocol	varchar(20)	YES			</span><br><span class="line">city	varchar(20)	YES			</span><br><span class="line">prov	varchar(20)	YES			</span><br><span class="line">assetcode	varchar(30)	YES</span><br></pre></td></tr></table></figure></p>
+<p>territory 表结构 地区数据表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">id	bigint(20)	NO	PRI		auto_increment</span><br><span class="line">version	int(11)	YES			</span><br><span class="line">label	varchar(100)	YES			</span><br><span class="line">level	int(11)	YES</span><br></pre></td></tr></table></figure></p>
+<p>watermeter 部分表结构 数据存储表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">id	bigint(20)	NO	PRI		auto_increment</span><br><span class="line">version	int(11)	YES			</span><br><span class="line">valid	int(11)	YES		0	</span><br><span class="line">assetcode	varchar(30)	YES			</span><br><span class="line">battery_vol	bigint(20)	YES		0</span><br></pre></td></tr></table></figure>
+<p>SQL执行语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT name, protocol, pressure, label,station.assetcode,lastTime FROM station left join territory on station.tid = territory.id join (select assetcode,max(sampleat) as lastTime from watermeter group by assetcode) watermeter on station.assetcode = watermeter.assetcode order by lastTime desc;</span><br></pre></td></tr></table></figure></p>
+<p>先执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select assetcode,max(sampleat) as lastTime from watermeter group by assetcode</span><br></pre></td></tr></table></figure></p>
+<p>从watermeter中取出不同assetcode最后日期的数据。再同station,territory 关联查询。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/11/三表关联查询/" data-id="cjs0e5i5m000m64wgrwfh2wx1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mosqitto_mosquitto.conf_配置文件" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/30/mosqitto_mosquitto.conf_配置文件/" class="article-date">
+  <time datetime="2018-08-30T13:45:14.000Z" itemprop="datePublished">2018-08-30</time>
 </a>
     
   </div>
@@ -76,7 +112,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/15/hello-world/">Hello World</a>
+      <a class="article-title" href="/2018/08/30/mosqitto_mosquitto.conf_配置文件/">mosquitto 配置文件说明</a>
     </h1>
   
 
@@ -84,20 +120,475 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>Mosquitto的配置文件存放在/etc/mosquitto/mosquitto.conf</p>
+<p>配置文件具体的配置内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line"># =================================================================</span><br><span class="line"># General configuration</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 客户端心跳的间隔时间</span><br><span class="line">#retry_interval 20</span><br><span class="line"></span><br><span class="line"># 系统状态的刷新时间</span><br><span class="line">#sys_interval 10</span><br><span class="line"></span><br><span class="line"># 系统资源的回收时间，0表示尽快处理</span><br><span class="line">#store_clean_interval 10</span><br><span class="line"></span><br><span class="line"># 服务进程的PID</span><br><span class="line">#pid_file /var/run/mosquitto.pid</span><br><span class="line"></span><br><span class="line"># 服务进程的系统用户</span><br><span class="line">#user mosquitto</span><br><span class="line"></span><br><span class="line"># 客户端心跳消息的最大并发数</span><br><span class="line">#max_inflight_messages 10</span><br><span class="line"></span><br><span class="line"># 客户端心跳消息缓存队列</span><br><span class="line">#max_queued_messages 100</span><br><span class="line"></span><br><span class="line"># 用于设置客户端长连接的过期时间，默认永不过期</span><br><span class="line">#persistent_client_expiration</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Default listener</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 服务绑定的IP地址</span><br><span class="line">#bind_address</span><br><span class="line"></span><br><span class="line"># 服务绑定的端口号</span><br><span class="line">#port 1883</span><br><span class="line"></span><br><span class="line"># 允许的最大连接数，-1表示没有限制</span><br><span class="line">#max_connections -1</span><br><span class="line"></span><br><span class="line"># cafile：CA证书文件</span><br><span class="line"># capath：CA证书目录</span><br><span class="line"># certfile：PEM证书文件</span><br><span class="line"># keyfile：PEM密钥文件</span><br><span class="line">#cafile</span><br><span class="line">#capath</span><br><span class="line">#certfile</span><br><span class="line">#keyfile</span><br><span class="line"></span><br><span class="line"># 必须提供证书以保证数据安全性</span><br><span class="line">#require_certificate false</span><br><span class="line"></span><br><span class="line"># 若require_certificate值为true，use_identity_as_username也必须为true</span><br><span class="line">#use_identity_as_username false</span><br><span class="line"></span><br><span class="line"># 启用PSK（Pre-shared-key）支持</span><br><span class="line">#psk_hint</span><br><span class="line"></span><br><span class="line"># SSL/TSL加密算法，可以使用“openssl ciphers”命令获取</span><br><span class="line"># as the output of that command.</span><br><span class="line">#ciphers</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Persistence</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 消息自动保存的间隔时间</span><br><span class="line">#autosave_interval 1800</span><br><span class="line"></span><br><span class="line"># 消息自动保存功能的开关</span><br><span class="line">#autosave_on_changes false</span><br><span class="line"></span><br><span class="line"># 持久化功能的开关</span><br><span class="line">persistence true</span><br><span class="line"></span><br><span class="line"># 持久化DB文件</span><br><span class="line">#persistence_file mosquitto.db</span><br><span class="line"></span><br><span class="line"># 持久化DB文件目录</span><br><span class="line">#persistence_location /var/lib/mosquitto/</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Logging</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 4种日志模式：stdout、stderr、syslog、topic</span><br><span class="line"># none 则表示不记日志，此配置可以提升些许性能</span><br><span class="line">log_dest none</span><br><span class="line"></span><br><span class="line"># 选择日志的级别（可设置多项）</span><br><span class="line">#log_type error</span><br><span class="line">#log_type warning</span><br><span class="line">#log_type notice</span><br><span class="line">#log_type information</span><br><span class="line"></span><br><span class="line"># 是否记录客户端连接信息</span><br><span class="line">#connection_messages true</span><br><span class="line"></span><br><span class="line"># 是否记录日志时间</span><br><span class="line">#log_timestamp true</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Security</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 客户端ID的前缀限制，可用于保证安全性</span><br><span class="line">#clientid_prefixes</span><br><span class="line"></span><br><span class="line"># 允许匿名用户</span><br><span class="line">#allow_anonymous true</span><br><span class="line"></span><br><span class="line"># 用户/密码文件，默认格式：username:password</span><br><span class="line">#password_file</span><br><span class="line"></span><br><span class="line"># PSK格式密码文件，默认格式：identity:key</span><br><span class="line">#psk_file</span><br><span class="line"></span><br><span class="line"># pattern write sensor/%u/data</span><br><span class="line"># ACL权限配置，常用语法如下：</span><br><span class="line"># 用户限制：user &lt;username&gt;</span><br><span class="line"># 话题限制：topic [read|write] &lt;topic&gt;</span><br><span class="line"># 正则限制：pattern write sensor/%u/data</span><br><span class="line">#acl_file</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Bridges</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 允许服务之间使用“桥接”模式（可用于分布式部署）</span><br><span class="line">#connection &lt;name&gt;</span><br><span class="line">#address &lt;host&gt;[:&lt;port&gt;]</span><br><span class="line">#topic &lt;topic&gt; [[[out | in | both] qos-level] local-prefix remote-prefix]</span><br><span class="line"></span><br><span class="line"># 设置桥接的客户端ID</span><br><span class="line">#clientid</span><br><span class="line"></span><br><span class="line"># 桥接断开时，是否清除远程服务器中的消息</span><br><span class="line">#cleansession false</span><br><span class="line"></span><br><span class="line"># 是否发布桥接的状态信息</span><br><span class="line">#notifications true</span><br><span class="line"></span><br><span class="line"># 设置桥接模式下，消息将会发布到的话题地址</span><br><span class="line"># $SYS/broker/connection/&lt;clientid&gt;/state</span><br><span class="line">#notification_topic</span><br><span class="line"></span><br><span class="line"># 设置桥接的keepalive数值</span><br><span class="line">#keepalive_interval 60</span><br><span class="line"></span><br><span class="line"># 桥接模式，目前有三种：automatic、lazy、once</span><br><span class="line">#start_type automatic</span><br><span class="line"></span><br><span class="line"># 桥接模式automatic的超时时间</span><br><span class="line">#restart_timeout 30</span><br><span class="line"></span><br><span class="line"># 桥接模式lazy的超时时间</span><br><span class="line">#idle_timeout 60</span><br><span class="line"></span><br><span class="line"># 桥接客户端的用户名</span><br><span class="line">#username</span><br><span class="line"></span><br><span class="line"># 桥接客户端的密码</span><br><span class="line">#password</span><br><span class="line"></span><br><span class="line"># bridge_cafile：桥接客户端的CA证书文件</span><br><span class="line"># bridge_capath：桥接客户端的CA证书目录</span><br><span class="line"># bridge_certfile：桥接客户端的PEM证书文件</span><br><span class="line"># bridge_keyfile：桥接客户端的PEM密钥文件</span><br><span class="line">#bridge_cafile</span><br><span class="line">#bridge_capath</span><br><span class="line">#bridge_certfile</span><br><span class="line">#bridge_keyfile</span><br><span class="line"></span><br><span class="line"># 自己的配置可以放到以下目录中</span><br></pre></td></tr></table></figure>
+<p>include_dir /etc/mosquitto/conf.d</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/15/hello-world/" data-id="cjqxkf2zo000084wgeun7qgjr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/30/mosqitto_mosquitto.conf_配置文件/" data-id="cjs0e5i5e000f64wglrw4kybi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-react-跨域-api" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/13/react-跨域-api/" class="article-date">
+  <time datetime="2018-06-13T06:28:15.000Z" itemprop="datePublished">2018-06-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/13/react-跨域-api/">react-跨域-api</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="React-跨域-请求rest-API数据"><a href="#React-跨域-请求rest-API数据" class="headerlink" title="React 跨域 请求rest API数据"></a>React 跨域 请求rest API数据</h3><p>被react 跨域折腾了一天，终于解决<br>使用create-react-app  创建react</p>
+<h5 id="1-配置package-json"><a href="#1-配置package-json" class="headerlink" title="1.　配置package.json　"></a>1.　配置package.json　</h5><p>增加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;proxy&quot;: &quot;http://api.tinma.cc:8088/&quot;</span><br></pre></td></tr></table></figure>
+<h5 id="2-CODE请求"><a href="#2-CODE请求" class="headerlink" title="2. CODE请求"></a>2. CODE请求</h5><blockquote>
+<p>fetch(‘/api/v1/‘)<br>    .then(response =&gt; response.json())<br>    .then(result =&gt; {<br>        console.log(result)<br>         })</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/13/react-跨域-api/" data-id="cjs0e5i5j000j64wg3jrznpoq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mysql升级8-0后遇到的坑" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/05/mysql升级8-0后遇到的坑/" class="article-date">
+  <time datetime="2018-06-05T07:02:35.000Z" itemprop="datePublished">2018-06-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/05/mysql升级8-0后遇到的坑/">mysql升级8.0后遇到的坑</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>听说mysql8的性能提升了很多，对于我这种喜欢把所有软件升级到最新版的人来说，二话不说直接升级。(因为用户不多所以就是这么任性)。升级的过程不可能一帆风顺，本文记录一些遇到的坑，希望对大家有所帮助。</p>
+<h4 id="坑一"><a href="#坑一" class="headerlink" title="坑一"></a>坑一</h4><p>首先在配置mysql的yum源的rpm包的时候报了如下的错。</p>
+<blockquote>
+<p>$ rpm-Uvh http ://repo.mysql.com/mysql80-community- release-el7-1.noarch.rpm<br>error: Failed dependencies :<br>mysql57-community- release conflicts with mysql80-community- release-el7-1.noarch<br>mysql.png</p>
+</blockquote>
+<p><strong>解决方法一：</strong>使用rpm -qa 查找已安装包</p>
+<blockquote>
+<p>$ rpm -qa | grep mysql<br>mysql57-community- release-el7-11.noarch</p>
+</blockquote>
+<p>然后卸载对应包</p>
+<blockquote>
+<p>$ rpm-e–nodeps mysql57-community- release-el7-11.noarch</p>
+</blockquote>
+<p><strong>解决方法二：</strong>增加–nodeps –force 参数</p>
+<blockquote>
+<p>$  rpm-Uvh http ://repo.mysql.com/mysql80-community- release-el7-1.noarch.rpm –nodeps –force</p>
+</blockquote>
+<h4 id="坑二"><a href="#坑二" class="headerlink" title="坑二"></a>坑二</h4><p>安装完成后进入数据库show databases;、或者尝试更改权限时报错</p>
+<blockquote>
+<p>ERROR 1449 (HY000): The user specified as a definer (‘mysql.infoschema‘@’localhost’) does not exist<br>Table ‘mysql.role_edges’ doesn’t exist</p>
+</blockquote>
+<p><strong>解决方法</strong></p>
+<blockquote>
+<p>mysql_upgrade -u root -p;</p>
+</blockquote>
+<h4 id="坑三"><a href="#坑三" class="headerlink" title="坑三"></a>坑三</h4><p>在客户端成功连接数据库之后，发现项目里的pdo连接mysql又报错了。</p>
+<blockquote>
+<p>Next PDOException: SQLSTATE[HY000] [2054] The server requested authentication method unknown to the client [caching_sha2_password] in /vendor/yiisoft/yii2/db/Connection.php:687</p>
+</blockquote>
+<p>这个错可能是mysql默认使用caching_sha2_password作为默认的身份验证插件，而不再是mysql_native_password，但是客户端暂时不支持这个插件导致的。官方文档说明</p>
+<blockquote>
+<p>In MySQL 8.0, caching_sha2_password is the default authentication plugin rather than mysql_native_password. For information about the implications of this change for server operation and compatibility of the server with clients and connectors, see caching_sha2_password as the Preferred Authentication Plugin.</p>
+</blockquote>
+<p>在MySQL 8.0中，caching_sha2_password是默认的身份验证插件，而不是mysql_native_password。有关此更改对服务器操作的影响以及服务器与客户端和连接器的兼容性的信息，请参阅caching_sha2_password作为首选身份验证插件。</p>
+<p><strong>解决方法</strong></p>
+<p>编辑my.cnf文件，更改默认的身份认证插件。</p>
+<blockquote>
+<p>$ vi /etc/my.cnf</p>
+</blockquote>
+<p>在[mysqld]中添加下边的代码</p>
+<blockquote>
+<p>default_authentication_plugin=mysql_native_password</p>
+</blockquote>
+<p>然后重启mysql</p>
+<blockquote>
+<p>$ service mysqld restart</p>
+</blockquote>
+<p>网站终于正常打开了。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/05/mysql升级8-0后遇到的坑/" data-id="cjs0e5i5f000g64wgkeyvxv61" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-react-lifecycle" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/02/react-lifecycle/" class="article-date">
+  <time datetime="2018-06-02T13:45:14.000Z" itemprop="datePublished">2018-06-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/02/react-lifecycle/">react-lifecycle</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="React-声明周期"><a href="#React-声明周期" class="headerlink" title="React 声明周期"></a>React 声明周期</h3><p><img src="http://blog.tinma.cc/archives/react-lifecycle.png" alt=""> </p>
+<h5 id="组件在初始化时会触发5个钩子函数："><a href="#组件在初始化时会触发5个钩子函数：" class="headerlink" title="组件在初始化时会触发5个钩子函数："></a>组件在初始化时会触发5个钩子函数：</h5><p>1、getDefaultProps()</p>
+<blockquote>
+<p>设置默认的props，也可以用dufaultProps设置组件的默认属性。</p>
+</blockquote>
+<p>2、getInitialState()</p>
+<blockquote>
+<p>在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this.state。此时可以访问this.props。</p>
+</blockquote>
+<p>3、componentWillMount()</p>
+<blockquote>
+<p>组件初始化时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state。</p>
+</blockquote>
+<p>4、 render()</p>
+<blockquote>
+<p>react最重要的步骤，创建虚拟dom，进行diff算法，更新dom树都在此进行。此时就不能更改state了。</p>
+</blockquote>
+<p>5、componentDidMount()</p>
+<blockquote>
+<p>组件渲染之后调用，可以通过this.getDOMNode()获取和操作dom节点，只调用一次。</p>
+</blockquote>
+<h5 id="在更新时也会触发5个钩子函数："><a href="#在更新时也会触发5个钩子函数：" class="headerlink" title="在更新时也会触发5个钩子函数："></a>在更新时也会触发5个钩子函数：</h5><p>6、componentWillReceivePorps(nextProps)</p>
+<blockquote>
+<p>组件初始化时不调用，组件接受新的props时调用。</p>
+</blockquote>
+<p>7、shouldComponentUpdate(nextProps, nextState)</p>
+<blockquote>
+<p>react性能优化非常重要的一环。组件接受新的state或者props时调用，我们可以设置在此对比前后两个props和state是否相同，如果相同则返回false阻止更新，因为相同的属性状态一定会生成相同的dom树，这样就不需要创造新的dom树和旧的dom树进行diff算法对比，节省大量性能，尤其是在dom结构复杂的时候。不过调用this.forceUpdate会跳过此步骤。</p>
+</blockquote>
+<p>8、componentWillUpdate(nextProps, nextState)</p>
+<blockquote>
+<p>组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state</p>
+</blockquote>
+<p>9、render()</p>
+<blockquote>
+<p>不多说</p>
+</blockquote>
+<p>10、componentDidUpdate()</p>
+<blockquote>
+<p>组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点。</p>
+</blockquote>
+<p>还有一个卸载钩子函数</p>
+<p>11、componentWillUnmount()</p>
+<blockquote>
+<p>组件将要卸载时调用，一些事件监听和定时器需要在此时清除。</p>
+</blockquote>
+<p>以上可以看出来react总共有10个周期函数（render重复一次），这个10个函数可以满足我们所有对组件操作的需求，利用的好可以提高开发效率和组件性能。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/02/react-lifecycle/" data-id="cjs0e5i5i000i64wgo2fcvjb2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-MQTT-linux_安装部署" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/02/MQTT-linux_安装部署/" class="article-date">
+  <time datetime="2018-06-02T13:45:14.000Z" itemprop="datePublished">2018-06-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/02/MQTT-linux_安装部署/">Moquitto 服务器配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>服务器的版本是CentOS6.5。<br>1、安装依赖</p>
+<p>yum -y install gcc gcc-c++ openssl-devel c-ares-devel libuuid-devel wget cmake<br>1<br>2、为mosquitto增加websocket支持，安装文本socket库文件<br>解压缩：# tar zxfv libwebsockets-v1.6-stable.tar.gz</p>
+<p>3、运行 websocket</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd libwebsockets-v1.6-stable</span><br><span class="line">mkdir bulid</span><br><span class="line">cd bulid</span><br><span class="line">cmake ..</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>4、安装mosquitto</p>
+<p>下载mqtt，我用的是 mosquitto-1.4.8.tar.gz，<br>解压缩：# tar zxfv mosquitto-1.4.8.tar.gz</p>
+<p>5、修改config.mk文件以使后面编译的mosquitto文件支持websocket</p>
+<blockquote>
+<p>cd /mosquitto-1.4.8 </p>
+</blockquote>
+<p>mosquitto-1.4.8目录下的config.mk文件，把config.mk 文件中的 WITH_WEBSOCKETS:=no 改为yes</p>
+<p>保存后，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"># ln -s /usr/local/lib/libwebsockets.so.6 /usr/lib64/libwebsockets.so.6</span><br></pre></td></tr></table></figure>
+<p>6、创建mosquitto.conf、pwfile文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd /etc/mosquitto/</span><br></pre></td></tr></table></figure></p>
+<p>如果该目录下没有mosquitto.conf 和 pwfile<br>执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># cp mosquitto.conf.example mosquitto.conf</span><br><span class="line"></span><br><span class="line"># cp pwfile.example pwfile</span><br></pre></td></tr></table></figure></p>
+<p>然后修改 文件mosquitto.conf ，</p>
+<blockquote>
+<p>allow_anonoymous true<br>password_file /etc/mosquitto/pwfile</p>
+</blockquote>
+<p>并在文件最后加入</p>
+<blockquote>
+<p>port 1883<br>listener 8080<br>protocol websockets</p>
+</blockquote>
+<p>7、启动mqtt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mosquitto -c /etc/mosquitto/mosquitto.conf</span><br></pre></td></tr></table></figure>
+<p>8、测试<br>另外打开两个终端<br>终端一：<br> 这里其实就是订阅一个主题为”mqtt”的消息。”mqtt”为主题名，假如有客户端发布了主题为”mqtt”的消息，这个终端将会收到消息的内容。</p>
+<blockquote>
+<p>mosquitto_sub -t mqtt</p>
+</blockquote>
+<p>终端二：<br> 这里就是发布一个主题为”mqtt”，内容为”hello mqtt”的消息。</p>
+<blockquote>
+<p>mosquitto_pub -h localhost -t mqtt -m “hello mqtt”</p>
+</blockquote>
+<p>这时终端一会收到：hello mqtt</p>
+<p>9、错误解决</p>
+<p>在安装过程中，或测试过程中可能会遇到错误：</p>
+<blockquote>
+<p>mosquitto_sub: error while loading shared libraries: libmosquitto.so.1: cannot open shared object file: No such file or directory</p>
+</blockquote>
+<p>解决方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># cat /etc/ld.so.conf</span><br><span class="line"></span><br><span class="line"># echo &quot;/usr/local/lib&quot;&gt;&gt;/etc/ld.so.conf</span><br><span class="line"></span><br><span class="line"># ldconfig</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/02/MQTT-linux_安装部署/" data-id="cjs0e5i50000264wg1ajtxfv1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-基于node前端项目编译时内存溢出问题" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/30/基于node前端项目编译时内存溢出问题/" class="article-date">
+  <time datetime="2018-05-30T03:11:22.000Z" itemprop="datePublished">2018-05-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/30/基于node前端项目编译时内存溢出问题/">基于node前端项目编译时内存溢出问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基于node的前端项目编译时内存溢出问题"><a href="#基于node的前端项目编译时内存溢出问题" class="headerlink" title="基于node的前端项目编译时内存溢出问题"></a>基于node的前端项目编译时内存溢出问题</h2><p>CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory JavaScript堆内存不足，这里说的 JavaScript 其实就是 Node，我们都知道 Node 是基于V8引擎，在一般的后端开发语言中，在基本的内存使用上没有什么限制，但是我去查阅了相关的资料才发现，在 Node 中通过 JavaScript 使用内存时只能使用部分内存（64位系统下约为1.4 GB，32位系统下约为0.7 GB），这就是我们编译项目时为什么会出现内存泄露了，因为前端项目如果非常的庞大，webpack 编译时就会占用很多的系统资源，如果超出了V8对 Node 默认的内存限制大小就会出现刚刚我截图的那个错误了，那怎么解决呢？V8依然提供了选项让我们使用更多的内存。Node 在启动时可以传递 –max-old-space-size 或 –max-new-space-size 来调整内存大小的使用限制，示例如下</p>
+<blockquote>
+<p>node –max-old-space-size=1700 test.js // 单位为MB<br>// 或者<br>node –max-new-space-size=1024 test.js // 单位为KB</p>
+</blockquote>
+<p>上述参数在V8初始化时生效，一旦生效就不能再动态改变。如果遇到 Node 无法分配足够内存给 JavaScript 的情况，可以用这个办法来放宽V8默认的内存限制，避免在执行过程中稍微多用了一些内存就轻易崩溃，既然知道了解决办法那就好办了，下面来分别详细说明三大框架下的具体操作。</p>
+<h4 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h4><p>先说vue，因为vue是最简单的，因为基于 vue-cli 生成的项目，vue没有把 package.json 里面 scripts 字段的脚本命令的node命令隐藏起来，我们直接把上面v8提供的选项参数直接写入scripts 字段的 node 命令后就好了，示例如下</p>
+<blockquote>
+<p>“build”: “node –max_old_space_size=4096 build/build.js”</p>
+</blockquote>
+<p>直接在 node 后面写上 –max_old_space_size=4096 就好了，我这里设置的内存大小是4G,这个具体的大小可以根据自己的项目情况来设置就好了。然后再重新运行 npm run build 就可以正常打包构建了。</p>
+<h4 id="React"><a href="#React" class="headerlink" title="React"></a>React</h4><p>下面来说说 react ，首先如果自己的 react 项目的开发打包环境是自己搭建的话，那解决方法就和上面的 vue 一样，在 node 命令后面加上 –max_old_space_size=4096 就好了，如果是基于 react-cli 生成的项目那就接着看吧，基于react-cli 生成的项目package.json 里面 scripts 字段的内容如下</p>
+<blockquote>
+</blockquote>
+<p>“scripts”: {<br> “start”: “react-scripts start”,<br> “build”: “react-scripts build”,<br> “test”: “react-scripts test –env=jsdom”,<br> “eject”: “react-scripts eject”<br>}</p>
+<p>这个就和 vue-cli 不一样了，运行npm run build的时候跑的实际代码是 react-scripts build, 这个脚本是来源于哪里呢，我们打开项目根目录mode_modeles文件夹，会看到一个.bin的目录，react-scripts脚本就定义在这里，在.bin目录下可以找到一个叫react-scripts的文件，打开这个文件，我们发现里面就是一些javascript代码，这个代码的首行有些特殊，我们可以看到#!/usr/bin/env node一行这样的代码，它的意思就是，用当前电脑/usr/bin/env目录下的node来运行该文件里面的javascript代码，看到这里我们都明白了，回到我们最初要解决的问题，我们可以把–max_old_space_size=4096这行代码写在#!/usr/bin/env node后面，#!/usr/bin/env node –max_old_space_size=4096，这样就好了，我们的内存溢出问题也就解决了。</p>
+<h4 id="Angular"><a href="#Angular" class="headerlink" title="Angular"></a>Angular</h4><p>最后开始说 angular ，当然这里说的 angular 是 angular 的最新版本不是angularjs，写angular应用我们一般也都会用angular-cli来搭建项目，如果是自己搭建的开发编译那解决办法和上面的vue是一样的了。用angular-cli来生成的项目也和react一样，cli把node命令也隐藏起来了，package.json 里面 scripts 字段的内容如下</p>
+<blockquote>
+</blockquote>
+<p>“scripts”: {<br> “ng”: “ng”,<br> “start”: “ng serve”,<br> “build”: “ng build”,<br> “test”: “ng test”,<br> “lint”: “ng lint”,<br> “e2e”: “ng e2e”<br>}</p>
+<p>这里的ng命令也和react一样，定义在项目根目录mode_modeles文件夹下的.bin目录里面，.bin目录下我们能找到一个叫ng的文件，在该文件的首行写上#!/usr/bin/env node –max_old_space_size=4096，这样也就可以解除v8对node的内存使用限制了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/30/基于node前端项目编译时内存溢出问题/" data-id="cjs0e5i5n000n64wgveo1lgsy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-溢出/">node,溢出</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-react區分使用state和props" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/18/react區分使用state和props/" class="article-date">
+  <time datetime="2018-05-18T06:50:48.000Z" itemprop="datePublished">2018-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/18/react區分使用state和props/">react區分使用state和props</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="React區分使用state和props"><a href="#React區分使用state和props" class="headerlink" title="React區分使用state和props"></a>React區分使用state和props</h3><blockquote>
+<p>props是一種從父級向子級傳遞數據的方法，state只在交互的時候使用</p>
+</blockquote>
+<p>1  它是通過props從父級傳來的嗎？如果是，它可能不是state。<br>2  它隨着時間推移不變嗎？如果是，它可能不是state<br>3  你能過根據組件中任何其他的state或props把它計算出來嗎？如果是，它不是state</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/18/react區分使用state和props/" data-id="cjs0e5i5k000k64wg1pgnbi9j" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-程序员需要掌握的600个英语单词" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/17/程序员需要掌握的600个英语单词/" class="article-date">
+  <time datetime="2018-05-17T05:37:12.000Z" itemprop="datePublished">2018-05-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/17/程序员需要掌握的600个英语单词/">程序员需要掌握的600个英语单词</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>application 应用程式 应用、应用程序<br>application framework 应用程式框架、应用框架 应用程序框架<br>architecture 架构、系统架构 体系结构<br>argument 引数（传给函式的值）。叁见 parameter 叁数、实质叁数、实叁、自变量<br>array 阵列 数组<br>arrow operator arrow（箭头）运算子 箭头操作符<br>assembly 装配件<br>assembly language 组合语言 汇编语言<br>assert(ion) 断言<br>assign 指派、指定、设值、赋值 赋值<br>assignment 指派、指定 赋值、分配<br>assignment operator 指派（赋值）运算子 = 赋值操作符<br>associated 相应的、相关的 相关的、关联、相应的<br>associative container 关联式容器（对应 sequential container） 关联式容器<br>atomic 不可分割的 原子的<br>attribute 属性 属性、特性<br>audio 音讯 音频<br>A.I. 人工智慧 人工智能<br>background 背景 背景（用於图形着色） 后台（用於行程）<br>backward compatible 回溯相容 向下兼容<br>bandwidth 频宽 带宽<br>base class 基础类别 基类<br>base type 基础型别 (等同於 base class)<br>batch 批次（意思是整批作业） 批处理<br>benefit 利益 收益<br>best viable function 最佳可行函式 最佳可行函式 （从 viable functions 中挑出的最佳吻合者）<br>binary search 二分搜寻法 二分查找<br>binary tree 二元树 二叉树<br>binary function 二元函式 双叁函数<br>binary operator 二元运算子 二元操作符<br>binding 系结 绑定<br>bit 位元 位<br>bit field 位元栏 位域<br>bitmap 位元图 位图<br>bitwise 以 bit 为单元逐一┅<br>bitwise copy 以 bit 为单元进行复制；位元逐一复制 位拷贝<br>block 区块,区段 块、区块、语句块<br>boolean 布林值（真假值，true 或 false） 布尔值<br>border 边框、框线 边框<br>brace(curly brace) 大括弧、大括号 花括弧、花括号<br>bracket(square brakcet) 中括弧、中括号 方括弧、方括号<br>breakpoint 中断点 断点<br>build 建造、构筑、建置（MS 用语）<br>build－in 内建 内置<br>bus 汇流排 总线<br>business 商务,业务 业务<br>buttons 按钮 按钮<br>byte 位元组（由 8 bits 组成） 字节<br>cache 快取 高速缓存<br>call 呼叫、叫用 调用<br>callback 回呼 回调<br>call operator call（函式呼叫）运算子调用操作符 ###### （同 function call operator）<br>candidate function 候选函式 候选函数 ###### （在函式多载决议程序中出现的候选函式）<br>chain 串链（例 chain of function calls） 链<br>character 字元 字符<br>check box 核取方块 (i.e. check button) 复选框<br>checked exception 可控式异常(Java)<br>check button 方钮 (i.e. check box) 复选按钮<br>child class 子类别（或称为derived class, subtype） 子类<br>class 类别 类<br>class body 类别本体 类体<br>class declaration 类别宣告、类别宣告式 类声明<br>class definition 类别定义、类别定义式 类定义<br>class derivation list 类别衍化列 类继承列表<br>class head 类别表头 类头<br>class hierarchy 类别继承体系, 类别阶层 类层次体系<br>class library 类别程式库、类别库 类库<br>class template 类别模板、类别范本 类模板<br>class template partial specializations ###### 类别模板偏特化 类模板部分特化<br>class template specializations ###### 类别模板特化 类模板特化<br>cleanup 清理、善后 清理、清除<br>client 客端、客户端、客户 客户<br>client－server 主从架构 客户/服务器<br>clipboard 剪贴簿 剪贴板<br>clone 复制 克隆<br>collection 群集 集合<br>combo box 复合方块、复合框 组合框<br>command line 命令列 命令行 (系统文字模式下的整行执行命令)<br>communication 通讯 通讯<br>compatible 相容 兼容<br>compile time 编译期 编译期、编译时<br>compiler 编译器 编译器<br>component 组件 组件<br>composition 复合、合成、组合 组合<br>computer 电脑、计算机 计算机、电脑<br>concept 概念 概念<br>concrete 具象的 实在的<br>concurrent 并行 并发<br>configuration 组态 配置<br>connection 连接，连线（网络,资料库） 连接<br>constraint 约束（条件）<br>construct 构件 构件<br>container 容器 容器 ###### （存放资料的某种结构如 list, vector…）<br>containment 内含 包容<br>context 背景关系、周遭环境、上下脉络 环境、上下文<br>control 控制元件、控件 控件<br>console 主控台 控制台<br>const 常数（constant 的缩写，C++ 关键字）<br>constant 常数（相对於 variable） 常量<br>constructor（ctor） 建构式 构造函数 ###### （与class 同名的一种 member functions）<br>copy (v) 复制、拷贝 拷贝<br>copy (n) 复件, 副本<br>cover 涵盖 覆盖<br>create 创建、建立、产生、生成 创建<br>creation 产生、生成 创建<br>cursor 游标 光标<br>custom 订制、自定 定制<br>data 资料 数据<br>database 资料库 数据库<br>database schema 数据库结构纲目<br>data member 资料成员、成员变数 数据成员、成员变量<br>data structure 资料结构 数据结构<br>datagram 资料元 数据报文<br>dead lock 死结 死锁<br>debug 除错 调试<br>debugger 除错器 调试器<br>declaration 宣告、宣告式 声明<br>deduction 推导（例：template argument deduction） 推导、推断<br>default 预设 缺省、默认<br>defer 延缓 推迟<br>define 定义 预定义<br>definition 定义、定义区、定义式 定义<br>delegate 委派、委托、委任 委托<br>delegation （同上）<br>demarshal 反编列 散集<br>dereference 提领（取出指标所指物体的内容） 解叁考<br>dereference operator dereference（提领）运算子 <em> 解叁考操作符<br>derived class 衍生类别 派生类<br>design by contract 契约式设计<br>design pattern 设计范式、设计样式 设计模式 ※ 最近我比较喜欢「设计范式」一词<br>destroy 摧毁、销毁<br>destructor 解构式 析构函数<br>device 装置、设备 设备<br>dialog 对话窗、对话盒 对话框<br>directive 指令（例：using directive） (编译)指示符<br>directory 目录 目录<br>disk 碟 盘<br>dispatch 分派 分派<br>distributed computing 分布式计算 (分布式电算) 分布式计算 分散式计算 (分散式电算)<br>document 文件 文档<br>dot operator dot（句点）运算子 . (圆)点操作符<br>driver 驱动程式 驱动（程序）<br>dynamic binding 动态系结 动态绑定<br>efficiency 效率 效率<br>efficient 高效 高效<br>end user 终端用户<br>entity 物体 实体、物体<br>encapsulation 封装 封装<br>enclosing class 外围类别（与巢状类别 nested class 有关）外围类<br>enum (enumeration) 列举（一种 C++ 资料型别） 枚举<br>enumerators 列举元（enum 型别中的成员） 枚举成员、枚举器<br>equal 相等 相等<br>equality 相等性 相等性<br>equality operator equality（等号）运算子 == 等号操作符<br>equivalence 等价性、等同性、对等性 等价性<br>equivalent 等价、等同、对等 等价<br>escape code 转义码 转义码<br>evaluate 评估、求值、核定 评估<br>event 事件 事件<br>event driven 事件驱动的 事件驱动的<br>exception 异常情况 异常<br>exception declaration 异常宣告（ref. C++ Primer 3/e, 11.3） 异常声明<br>exception handling 异常处理、异常处理机制 异常处理、异常处理机制<br>exception specification 异常规格（ref. C++ Primer 3/e, 11.4） 异常规范<br>exit 退离（指离开函式时的那一个执行点） 退出<br>explicit 明白的、明显的、显式 显式<br>export 汇出 引出、导出<br>expression 运算式、算式 表达式<br>facility 设施、设备 设施、设备<br>feature 特性<br>field 栏位,资料栏（Java） 字段, 值域（Java）<br>file 档案 文件<br>firmware 韧体 固件<br>flag 旗标 标记<br>flash memory 快闪记忆体 闪存<br>flexibility 弹性 灵活性<br>flush 清理、扫清 刷新<br>font 字型 字体<br>form 表单（programming 用语） 窗体<br>formal parameter 形式叁数 形式叁数<br>forward declaration 前置宣告 前置声明<br>forwarding 转呼叫,转发 转发<br>forwarding function 转呼叫函式,转发函式 转发函数<br>fractal 碎形 分形<br>framework 框架 框架<br>full specialization 全特化（ref. partial specialization）<br>function 函式、函数 函数<br>function call operator 同 call operator<br>function object 函式物件（ref. C++ Primer 3/e, 12.3） 函数对象<br>function overloaded resolution 函式多载决议程序 函数重载解决（方案）<br>functionality 功能、机能 功能<br>function template 函式模板、函式范本 函数模板<br>functor 仿函式 仿函式、函子<br>game 游戏 游戏<br>generate 生成<br>generic 泛型、一般化的 一般化的、通用的、泛化<br>generic algorithm 泛型演算法 通用算法<br>getter (相对於 setter) 取值函式<br>global 全域的（对应於 local） 全局的<br>global object 全域物件 全局对象<br>global scope resolution operator 全域生存空间（范围决议）运算子 :: 全局范围解析操作符<br>group 群组<br>group box 群组方块 分组框<br>guard clause 卫述句 (Refactoring, p250) 卫语句<br>GUI 图形介面 图形界面<br>hand shaking 握手协商<br>handle 识别码、识别号、号码牌、权柄 句柄<br>handler 处理常式 处理函数<br>hard－coded 编死的 硬编码的<br>hard－copy 硬拷图 屏幕截图<br>hard disk 硬碟 硬盘<br>hardware 硬体 硬件<br>hash table 杂凑表 哈希表、散列表<br>header file 表头档、标头档 头文件<br>heap 堆积 堆<br>hierarchy 阶层体系 层次结构（体系）<br>hook 挂钩 钩子<br>hyperlink 超链结 超链接<br>icon 图示、图标 图标<br>IDE 整合开发环境 集成开发环境<br>identifier 识别字、识别符号 标识符<br>if and only if 若且唯若 当且仅当<br>Illinois 伊利诺 伊利诺斯<br>image 影像 图象<br>immediate base 直接的（紧临的）上层 base class。 直接上层基类<br>immediate derived 直接的（紧临的）下层 derived class。 直接下层派生类<br>immutability 不变性<br>immutable 不可变（的）<br>implement 实作、实现 实现<br>implementation 实作品、实作体、实作码、实件 实现<br>implicit 隐喻的、暗自的、隐式 隐式<br>import 汇入 导入<br>increment operator 累加运算子 ++ 增加操作符<br>infinite loop 无穷回圈 无限循环<br>infinite recursive 无穷递回 无限递归<br>information 资讯 信息<br>infrastructure 公共基础建设<br>inheritance 继承、继承机制 继承、继承机制<br>inline 行内 内联<br>inline expansion 行内展开 内联展开<br>initialization 初始化（动作） 初始化<br>initialization list 初值列 初始值列表<br>initialize 初始化 初始化<br>inner class 内隐类别 内嵌类<br>instance 实体 实例 ###### （根据某种表述而实际产生的「东西」）<br>instantiated 具现化、实体化（常应用於 template） 实例化<br>instantiation 具现体、具现化实体（常应用於 template） 实例<br>integer (integral) 整数（的） 整型（的）<br>integrate 整合 集成<br>interacts 交谈、互动 交互<br>interface 介面 接口<br>for GUI 介面 界面<br>interpreter 直译器 解释器<br>invariants 恒常性,约束条件 约束条件<br>invoke 唤起 调用<br>iterate 迭代（回圈一个轮回一个轮回地进行） 迭代<br>exception 异常情况 异常<br>exception declaration 异常宣告（ref. C++ Primer 3/e, 11.3） 异常声明<br>exception handling 异常处理、异常处理机制 异常处理、异常处理机制<br>exception specification 异常规格（ref. C++ Primer 3/e, 11.4） 异常规范<br>exit 退离（指离开函式时的那一个执行点） 退出<br>explicit 明白的、明显的、显式 显式<br>export 汇出 引出、导出<br>expression 运算式、算式 表达式<br>facility 设施、设备 设施、设备<br>feature 特性<br>field 栏位,资料栏（Java） 字段, 值域（Java）<br>file 档案 文件<br>firmware 韧体 固件<br>flag 旗标 标记<br>flash memory 快闪记忆体 闪存<br>flexibility 弹性 灵活性<br>flush 清理、扫清 刷新<br>font 字型 字体<br>form 表单（programming 用语） 窗体<br>formal parameter 形式叁数 形式叁数<br>forward declaration 前置宣告 前置声明<br>forwarding 转呼叫,转发 转发<br>forwarding function 转呼叫函式,转发函式 转发函数<br>fractal 碎形 分形<br>framework 框架 框架<br>full specialization 全特化（ref. partial specialization）<br>function 函式、函数 函数<br>function call operator 同 call operator<br>function object 函式物件（ref. C++ Primer 3/e, 12.3） 函数对象<br>function overloaded resolution 函式多载决议程序 函数重载解决（方案）<br>functionality 功能、机能 功能<br>function template 函式模板、函式范本 函数模板<br>functor 仿函式 仿函式、函子<br>game 游戏 游戏<br>generate 生成<br>generic 泛型、一般化的 一般化的、通用的、泛化<br>generic algorithm 泛型演算法 通用算法<br>getter (相对於 setter) 取值函式<br>global 全域的（对应於 local） 全局的<br>global object 全域物件 全局对象<br>global scope resolution operator 全域生存空间（范围决议）运算子 :: 全局范围解析操作符<br>group 群组<br>group box 群组方块 分组框<br>guard clause 卫述句 (Refactoring, p250) 卫语句<br>GUI 图形介面 图形界面<br>hand shaking 握手协商<br>handle 识别码、识别号、号码牌、权柄 句柄<br>handler 处理常式 处理函数<br>hard－coded 编死的 硬编码的<br>hard－copy 硬拷图 屏幕截图<br>hard disk 硬碟 硬盘<br>hardware 硬体 硬件<br>hash table 杂凑表 哈希表、散列表<br>header file 表头档、标头档 头文件<br>heap 堆积 堆<br>hierarchy 阶层体系 层次结构（体系）<br>hook 挂钩 钩子<br>hyperlink 超链结 超链接<br>icon 图示、图标 图标<br>IDE 整合开发环境 集成开发环境<br>identifier 识别字、识别符号 标识符<br>if and only if 若且唯若 当且仅当<br>Illinois 伊利诺 伊利诺斯<br>image 影像 图象<br>immediate base 直接的（紧临的）上层 base class。 直接上层基类<br>immediate derived 直接的（紧临的）下层 derived class。 直接下层派生类<br>immutability 不变性<br>immutable 不可变（的）<br>implement 实作、实现 实现<br>implementation 实作品、实作体、实作码、实件 实现<br>implicit 隐喻的、暗自的、隐式 隐式<br>import 汇入 导入<br>increment operator 累加运算子 ++ 增加操作符<br>infinite loop 无穷回圈 无限循环<br>infinite recursive 无穷递回 无限递归<br>information 资讯 信息<br>infrastructure 公共基础建设<br>inheritance 继承、继承机制 继承、继承机制<br>inline 行内 内联<br>inline expansion 行内展开 内联展开<br>initialization 初始化（动作） 初始化<br>initialization list 初值列 初始值列表<br>initialize 初始化 初始化<br>inner class 内隐类别 内嵌类<br>instance 实体 实例 ###### （根据某种表述而实际产生的「东西」）<br>instantiated 具现化、实体化（常应用於 template） 实例化<br>instantiation 具现体、具现化实体（常应用於 template） 实例<br>integer (integral) 整数（的） 整型（的）<br>integrate 整合 集成<br>interacts 交谈、互动 交互<br>interface 介面 接口<br>for GUI 介面 界面<br>interpreter 直译器 解释器<br>invariants 恒常性,约束条件 约束条件<br>invoke 唤起 调用<br>iterate 迭代（回圈一个轮回一个轮回地进行） 迭代<br>iterative 反覆的，迭代的<br>iterator 迭代器（一种泛型指标） 迭代器<br>iteration 迭代（回圈每次轮回称为一个 iteration） 迭代<br>item 项目、条款 项、条款、项目<br>laser 雷射 激光<br>level 阶 层 (级) 例 high level 高阶 高层<br>library 程式库、函式库 库、函数库<br>lifetime 生命期、寿命 生命期、寿命<br>link 联结、连结 连接,链接<br>linker 联结器、连结器 连接器<br>literal constant 字面常数（例 3.14 或 “hi” 这等常数值） 字面常数<br>list 串列（linked－list） 列表、表、链表<br>list box 列表方块、列表框 列表框<br>load 载入 装载<br>loader 载入器 装载器、载入器<br>local 区域的（对应於 global） 局部的<br>local object 区域物件 局部对象<br>lock 机锁<br>loop 回圈 循环<br>lvalue 左值 左值<br>macro 巨集 宏<br>magic number 魔术数字 魔法数<br>maintain 维护 维护<br>manipulator 操纵器（iostream 预先定义的一种东西） 操纵器<br>marshal 编列 列集 叁考 demarshal<br>mechanism 机制 机制<br>member 成员 成员<br>member access operator 成员取用运算子（有 dot 和 arrow 两种） 成员存取操作符<br>member function 成员函式 成员函数<br>member initialization list 成员初值列 成员初始值列表<br>memberwise 以 member 为单元┅、members 逐一┅ 以成员为单位<br>memberwise copy 以 members 为单元逐一复制<br>memory 记忆体 内存<br>menu 表单、选单 菜单<br>message 讯息 消息<br>message based 以讯息为基础的 基於消息的<br>message loop 讯息回圈 消息环<br>method (java) 方法、行为、函式 方法<br>meta－ 超－ 元－ 例 meta－programming 超编程 元编程<br>micro 微 微<br>middleware 中介层 中间件<br>modeling 模塑<br>modeling language 塑模语言，建模语言<br>modem 数据机 调制解调器<br>module 模组 模块<br>modifier 饰词 修饰符<br>most derived class 最末层衍生类别 最底层的派生类<br>mouse 滑鼠 鼠标<br>mutable 可变的 可变的<br>multi－tasking 多工 多任务<br>namespace 命名空间 名字空间、命名空间<br>native 原生的 本地的、固有的<br>nested class 巢状类别 嵌套类<br>network 网路 网络<br>network card 网路卡 网卡<br>object 物件 对象<br>object based 以物件为基础的 基於对象的<br>object file 目的档 目标文件<br>object model 物件模型 对象模型<br>object oriented 物件导向的 面向对象的<br>online 线上 在线<br>opaque 不透明的<br>operand 运算元 操作数<br>operating system (OS) 作业系统 操作系统<br>operation 操作、操作行为 操作<br>operator 运算子 操作符、运算符<br>option 选项，可选方案 选项<br>ordinary 常规的 常规的<br>overflow 上限溢位（相对於 underflow） 溢出（underflow:下溢）<br>overhead 额外负担、额外开销 额外开销<br>overload 多载化、多载化、重载 重载<br>overloaded function 多载化函式 重载的函数<br>overloaded operator 多载化运算子 被重载的操作符<br>overloaded set 多载集合 重载集合<br>override 改写、覆写 重载、改写、重新定义 ###### （在 derived class 中重新定义虚拟函式<br>package 套件 包<br>pair 对组<br>palette 调色盘、组件盘、工具箱<br>pane 窗格 窗格 ###### （有时为嵌板之意，例 Java Content Pane）<br>parallel 平行 并行<br>parameter 叁数（函式叁数列上的变数） 叁数、形式叁数、形叁<br>parameter list 叁数列 叁数列表<br>parent class 父类别（或称 base class） 父类<br>parentheses 小括弧、小括号 圆括弧、圆括号<br>parse 解析 解析<br>part 零件 部件<br>partial specialization 偏特化（ref. C++ Primer 3/e, 16.10） 局部特化 ###### （ref. full specialization）<br>pass by address 传址（函式引数的传递方式）（非正式用语）传地址<br>pass by reference 传址（函式引数的一种传递方式） 传地址, 按引用传递<br>pass by value 传值（函式引数的一种传递方式） 按值传递<br>pattern 范式、样式 模式<br>performance 效率、性能兼而有之 性能<br>persistence 永续性 持久性<br>pixel 图素、像素 像素<br>placement delete ref. C++ Primer 3/e, 15.8.2<br>placement new ref. C++ Primer 3/e, 15.8.2<br>platform 平台 平台<br>pointer 指标 指针 址位器（和址叁器 reference 形成对映，满好）<br>poll 轮询 轮询<br>polymorphism 多型 多态<br>pop up 冒起式、弹出式 弹出式<br>port 埠 端口<br>postfix 后置式、后序式 后置式<br>precedence 优先序（通常用於运算子的优先执行次序）<br>prefix 前置式、前序式 前置式<br>preprocessor 前处理器 预处理器<br>prime 质数 素数<br>primitive type 基本型别 (不同於 base class,基础类别)<br>print 列印 打印<br>printer 印表机 打印机<br>priority 优先权 (通常用於执行绪获得 CPU 时间的优先次序）<br>procedure 程序 过程<br>procedural 程序性的、程序式的 过程式的、过程化的<br>process 行程 进程<br>profile 评测 评测<br>profiler 效能（效率）评测器 效能（性能）评测器<br>programmer 程式员 程序员<br>programming 编程、程式设计、程式化 编程<br>progress bar 进度指示器 进度指示器<br>project 专案 项目、工程<br>property 属性<br>protocol 协定 协议<br>pseudo code 假码、虚拟码、伪码 伪码<br>qualified 经过资格修饰（例如加上 scope 运算子） 限定<br>qualifier 资格修饰词、饰词 限定修饰词<br>quality 品质 质量<br>queue 伫列 队列<br>radian 径度 弧度<br>radio button 圆钮 单选按钮<br>raise 引发（常用来表示发出一个 exception） 引起、引发<br>random number 随机数、乱数 随机数<br>range 范围、区间（用於 STL 时） 范围、区间<br>rank 等级、分等（ref. C++Primer 3/e 9,15章） 等级<br>raw 生鲜的、未经处理的 未经处理的<br>record 记录 记录<br>recordset 记录集 记录集<br>recursive 递回 递归<br>re－direction 重导向 重定向<br>refactoring 重构、重整 重构<br>refer 取用 叁考<br>refer to 指向、指涉、指代<br>reference （C++ 中类似指标的东西，相当於 “化身”） 引用、叁考 址叁器, see pointer<br>register 暂存器 寄存器<br>reflection 反射 反射、映像<br>relational database 关联式资料库 关系数据库<br>represent 表述，表现 表述，表现<br>resolve 决议（为算式中的符号名称寻找 解析 对应之宣告式的过程）<br>resolution 决议程序、决议过程 解析过程<br>resolution 解析度 分辨率<br>restriction 局限<br>return 传回、回返 返回<br>return type 回返型别 返回类型<br>return value 回返值 返回值<br>robust 强固、稳健 健壮<br>robustness 强固性、稳健性 健壮性<br>routine 常式 例程<br>runtime 执行期 运行期、运行时<br>common language runtime (CLR) 译为「通用语言执行层」<br>rvalue 右值 右值<br>save 储存 存储<br>schedule 排程 调度<br>scheduler 排程器 调度程序<br>scheme 结构纲目、组织纲目<br>scroll bar 卷轴 滚动条<br>scope 生存空间、生存范围、范畴、作用域 生存空间<br>scope operator 生存空间（范围决议）运算子 :: 生存空间操作符<br>scope resolution operator 生存空间决议运算子 生存空间解析操作符 ###### （与scope operator同）<br>screen 萤幕 屏幕<br>search 搜寻 查找<br>semantics 语意 语义<br>sequential container 序列式容器 顺序式容器 ###### （对应於 associative container）<br>server 伺服器、伺服端 服务器、服务端<br>serial 串行<br>serialization 次第读写,序列化 序列化 (serialize)<br>setter (相对於 getter) 设值函式<br>signal 信号<br>signature 标记式、签名式、署名式 签名<br>slider 滚轴 滑块<br>slot 条孔、槽 槽<br>smart pointer 灵巧指标、精灵指标 智能指针<br>snapshot 萤幕快照（图） 屏幕截图<br>specialization 特殊化、特殊化定义、特殊化宣告 特化<br>specification 规格 规格、规范<br>splitter 分裂视窗 切分窗口<br>software 软体 软件<br>solution 解法,解决方案 方案<br>source 原始码 源码、源代码<br>stack 堆叠 栈<br>stack unwinding 堆叠辗转开解（此词用於 exception 主题） 栈辗转开解 </em><br>standard library 标准程式库<br>standard template library 标准模板程式库<br>statement 述句 语句、声明<br>status bar 状态列、状态栏 状态条<br>STL 见 standard template library<br>stream 资料流、串流 流<br>string 字串 字符串<br>subroutine<br>subscript operator 下标运算子 [ ] 下标操作符<br>subtype 子型别 子类型<br>support 支援 支持<br>suspend 虚悬 挂起<br>symbol 符号 记号<br>syntax 语法 语法<br>tag 标签 标记 索引标签,页签<br>target 标的（例 target pointer：标的指标） 目标<br>task switch 工作切换 任务切换<br>template 模板、范本 模板<br>template argument deduction 模板引数推导 模板叁数推导<br>template explicit specialization 模板显式特化（版本） 模板显式特化<br>template parameter 模板叁数 模板叁数<br>temporary object 暂时物件 临时对象<br>text 文字 文本</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/17/程序员需要掌握的600个英语单词/" data-id="cjs0e5i5o000o64wgvr3wf80s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-react-html2canvas" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/14/react-html2canvas/" class="article-date">
+  <time datetime="2018-05-14T07:52:54.000Z" itemprop="datePublished">2018-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/14/react-html2canvas/">react-html2canvas</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="React-使用html2canvas-生成图片"><a href="#React-使用html2canvas-生成图片" class="headerlink" title="React 使用html2canvas 生成图片"></a>React 使用html2canvas 生成图片</h2><h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i html2canvas</span><br></pre></td></tr></table></figure>
+<h3 id="引入插件"><a href="#引入插件" class="headerlink" title="引入插件"></a>引入插件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import html2canvas from &apos;html2canvas&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="生成图片代码"><a href="#生成图片代码" class="headerlink" title="生成图片代码"></a>生成图片代码</h3><h4 id="调用html2canvas-选择document-body-范围，返回canvas回调函数，保存到dom下"><a href="#调用html2canvas-选择document-body-范围，返回canvas回调函数，保存到dom下" class="headerlink" title="调用html2canvas  选择document.body 范围，返回canvas回调函数，保存到dom下"></a>调用html2canvas  选择document.body 范围，返回canvas回调函数，保存到dom下</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">html2canvas(document.body)</span><br><span class="line">    .then(function (canvas) &#123;</span><br><span class="line">        document.body.appendChild(canvas);</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/14/react-html2canvas/" data-id="cjs0e5i5h000h64wgr93z4bmu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -109,6 +600,11 @@
   
 
 
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
+
 </section>
         
           <aside id="sidebar">
@@ -117,15 +613,29 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-溢出/">node,溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thymeleaf/">thymeleaf</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/node-溢出/" style="font-size: 10px;">node,溢出</a> <a href="/tags/thymeleaf/" style="font-size: 10px;">thymeleaf</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
     </div>
   </div>
 
@@ -138,7 +648,23 @@
       <ul>
         
           <li>
-            <a href="/2019/01/15/hello-world/">Hello World</a>
+            <a href="/2019/02/11/三表关联查询/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/30/mosqitto_mosquitto.conf_配置文件/">mosquitto 配置文件说明</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/13/react-跨域-api/">react-跨域-api</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/mysql升级8-0后遇到的坑/">mysql升级8.0后遇到的坑</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/02/react-lifecycle/">react-lifecycle</a>
           </li>
         
       </ul>
