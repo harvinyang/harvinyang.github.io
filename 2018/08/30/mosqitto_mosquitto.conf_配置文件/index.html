@@ -1,228 +1,340 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
+<html lang="en">
 
-  
-  <title>mosquitto 配置文件说明 | Harvin Yang</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Mosquitto的配置文件存放在/etc/mosquitto/mosquitto.conf 配置文件具体的配置内容为： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374">
-<meta property="og:type" content="article">
-<meta property="og:title" content="mosquitto 配置文件说明">
-<meta property="og:url" content="http://yoursite.com/2018/08/30/mosqitto_mosquitto.conf_配置文件/index.html">
-<meta property="og:site_name" content="Harvin Yang">
-<meta property="og:description" content="Mosquitto的配置文件存放在/etc/mosquitto/mosquitto.conf 配置文件具体的配置内容为： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-11T13:46:20.420Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mosquitto 配置文件说明">
-<meta name="twitter:description" content="Mosquitto的配置文件存放在/etc/mosquitto/mosquitto.conf 配置文件具体的配置内容为： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374">
-  
-    <link rel="alternate" href="/atom.xml" title="Harvin Yang" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="harvin yang&#39;s blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="Yangsx" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        mosquitto 配置文件说明｜yangsx&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.tinma.cc/2018/08/30/mosqitto_mosquitto.conf_配置文件/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
 </head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Harvin Yang</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-mosqitto_mosquitto.conf_配置文件" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/30/mosqitto_mosquitto.conf_配置文件/" class="article-date">
-  <time datetime="2018-08-30T13:45:14.000Z" itemprop="datePublished">2018-08-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      mosquitto 配置文件说明
-    </h1>
-  
 
-      </header>
+<style>
+
+    header.intro-header {
+        background-image: url('https://t1.picb.cc/uploads/2018/03/09/2yns48.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Yangsx
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="https://t1.picb.cc/uploads/2018/03/09/2ynTAW.jpg">
+
+
+<style>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Mosquitto的配置文件存放在/etc/mosquitto/mosquitto.conf</p>
+    header.intro-header {
+        background-image: url('https://t1.picb.cc/uploads/2018/03/09/2ynTAW.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>mosquitto 配置文件说明</h1>
+                    
+                    <span class="meta">
+                         作者 yangsx
+                        <span>
+                          日期 2018-08-30
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            mosquitto 配置文件说明
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>Mosquitto的配置文件存放在/etc/mosquitto/mosquitto.conf</p>
 <p>配置文件具体的配置内容为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line"># =================================================================</span><br><span class="line"># General configuration</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 客户端心跳的间隔时间</span><br><span class="line">#retry_interval 20</span><br><span class="line"></span><br><span class="line"># 系统状态的刷新时间</span><br><span class="line">#sys_interval 10</span><br><span class="line"></span><br><span class="line"># 系统资源的回收时间，0表示尽快处理</span><br><span class="line">#store_clean_interval 10</span><br><span class="line"></span><br><span class="line"># 服务进程的PID</span><br><span class="line">#pid_file /var/run/mosquitto.pid</span><br><span class="line"></span><br><span class="line"># 服务进程的系统用户</span><br><span class="line">#user mosquitto</span><br><span class="line"></span><br><span class="line"># 客户端心跳消息的最大并发数</span><br><span class="line">#max_inflight_messages 10</span><br><span class="line"></span><br><span class="line"># 客户端心跳消息缓存队列</span><br><span class="line">#max_queued_messages 100</span><br><span class="line"></span><br><span class="line"># 用于设置客户端长连接的过期时间，默认永不过期</span><br><span class="line">#persistent_client_expiration</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Default listener</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 服务绑定的IP地址</span><br><span class="line">#bind_address</span><br><span class="line"></span><br><span class="line"># 服务绑定的端口号</span><br><span class="line">#port 1883</span><br><span class="line"></span><br><span class="line"># 允许的最大连接数，-1表示没有限制</span><br><span class="line">#max_connections -1</span><br><span class="line"></span><br><span class="line"># cafile：CA证书文件</span><br><span class="line"># capath：CA证书目录</span><br><span class="line"># certfile：PEM证书文件</span><br><span class="line"># keyfile：PEM密钥文件</span><br><span class="line">#cafile</span><br><span class="line">#capath</span><br><span class="line">#certfile</span><br><span class="line">#keyfile</span><br><span class="line"></span><br><span class="line"># 必须提供证书以保证数据安全性</span><br><span class="line">#require_certificate false</span><br><span class="line"></span><br><span class="line"># 若require_certificate值为true，use_identity_as_username也必须为true</span><br><span class="line">#use_identity_as_username false</span><br><span class="line"></span><br><span class="line"># 启用PSK（Pre-shared-key）支持</span><br><span class="line">#psk_hint</span><br><span class="line"></span><br><span class="line"># SSL/TSL加密算法，可以使用“openssl ciphers”命令获取</span><br><span class="line"># as the output of that command.</span><br><span class="line">#ciphers</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Persistence</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 消息自动保存的间隔时间</span><br><span class="line">#autosave_interval 1800</span><br><span class="line"></span><br><span class="line"># 消息自动保存功能的开关</span><br><span class="line">#autosave_on_changes false</span><br><span class="line"></span><br><span class="line"># 持久化功能的开关</span><br><span class="line">persistence true</span><br><span class="line"></span><br><span class="line"># 持久化DB文件</span><br><span class="line">#persistence_file mosquitto.db</span><br><span class="line"></span><br><span class="line"># 持久化DB文件目录</span><br><span class="line">#persistence_location /var/lib/mosquitto/</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Logging</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 4种日志模式：stdout、stderr、syslog、topic</span><br><span class="line"># none 则表示不记日志，此配置可以提升些许性能</span><br><span class="line">log_dest none</span><br><span class="line"></span><br><span class="line"># 选择日志的级别（可设置多项）</span><br><span class="line">#log_type error</span><br><span class="line">#log_type warning</span><br><span class="line">#log_type notice</span><br><span class="line">#log_type information</span><br><span class="line"></span><br><span class="line"># 是否记录客户端连接信息</span><br><span class="line">#connection_messages true</span><br><span class="line"></span><br><span class="line"># 是否记录日志时间</span><br><span class="line">#log_timestamp true</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Security</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 客户端ID的前缀限制，可用于保证安全性</span><br><span class="line">#clientid_prefixes</span><br><span class="line"></span><br><span class="line"># 允许匿名用户</span><br><span class="line">#allow_anonymous true</span><br><span class="line"></span><br><span class="line"># 用户/密码文件，默认格式：username:password</span><br><span class="line">#password_file</span><br><span class="line"></span><br><span class="line"># PSK格式密码文件，默认格式：identity:key</span><br><span class="line">#psk_file</span><br><span class="line"></span><br><span class="line"># pattern write sensor/%u/data</span><br><span class="line"># ACL权限配置，常用语法如下：</span><br><span class="line"># 用户限制：user &lt;username&gt;</span><br><span class="line"># 话题限制：topic [read|write] &lt;topic&gt;</span><br><span class="line"># 正则限制：pattern write sensor/%u/data</span><br><span class="line">#acl_file</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Bridges</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 允许服务之间使用“桥接”模式（可用于分布式部署）</span><br><span class="line">#connection &lt;name&gt;</span><br><span class="line">#address &lt;host&gt;[:&lt;port&gt;]</span><br><span class="line">#topic &lt;topic&gt; [[[out | in | both] qos-level] local-prefix remote-prefix]</span><br><span class="line"></span><br><span class="line"># 设置桥接的客户端ID</span><br><span class="line">#clientid</span><br><span class="line"></span><br><span class="line"># 桥接断开时，是否清除远程服务器中的消息</span><br><span class="line">#cleansession false</span><br><span class="line"></span><br><span class="line"># 是否发布桥接的状态信息</span><br><span class="line">#notifications true</span><br><span class="line"></span><br><span class="line"># 设置桥接模式下，消息将会发布到的话题地址</span><br><span class="line"># $SYS/broker/connection/&lt;clientid&gt;/state</span><br><span class="line">#notification_topic</span><br><span class="line"></span><br><span class="line"># 设置桥接的keepalive数值</span><br><span class="line">#keepalive_interval 60</span><br><span class="line"></span><br><span class="line"># 桥接模式，目前有三种：automatic、lazy、once</span><br><span class="line">#start_type automatic</span><br><span class="line"></span><br><span class="line"># 桥接模式automatic的超时时间</span><br><span class="line">#restart_timeout 30</span><br><span class="line"></span><br><span class="line"># 桥接模式lazy的超时时间</span><br><span class="line">#idle_timeout 60</span><br><span class="line"></span><br><span class="line"># 桥接客户端的用户名</span><br><span class="line">#username</span><br><span class="line"></span><br><span class="line"># 桥接客户端的密码</span><br><span class="line">#password</span><br><span class="line"></span><br><span class="line"># bridge_cafile：桥接客户端的CA证书文件</span><br><span class="line"># bridge_capath：桥接客户端的CA证书目录</span><br><span class="line"># bridge_certfile：桥接客户端的PEM证书文件</span><br><span class="line"># bridge_keyfile：桥接客户端的PEM密钥文件</span><br><span class="line">#bridge_cafile</span><br><span class="line">#bridge_capath</span><br><span class="line">#bridge_certfile</span><br><span class="line">#bridge_keyfile</span><br><span class="line"></span><br><span class="line"># 自己的配置可以放到以下目录中</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># =================================================================</span><br><span class="line"># General configuration</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 客户端心跳的间隔时间</span><br><span class="line">#retry_interval 20</span><br><span class="line"></span><br><span class="line"># 系统状态的刷新时间</span><br><span class="line">#sys_interval 10</span><br><span class="line"></span><br><span class="line"># 系统资源的回收时间，0表示尽快处理</span><br><span class="line">#store_clean_interval 10</span><br><span class="line"></span><br><span class="line"># 服务进程的PID</span><br><span class="line">#pid_file /var/run/mosquitto.pid</span><br><span class="line"></span><br><span class="line"># 服务进程的系统用户</span><br><span class="line">#user mosquitto</span><br><span class="line"></span><br><span class="line"># 客户端心跳消息的最大并发数</span><br><span class="line">#max_inflight_messages 10</span><br><span class="line"></span><br><span class="line"># 客户端心跳消息缓存队列</span><br><span class="line">#max_queued_messages 100</span><br><span class="line"></span><br><span class="line"># 用于设置客户端长连接的过期时间，默认永不过期</span><br><span class="line">#persistent_client_expiration</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Default listener</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 服务绑定的IP地址</span><br><span class="line">#bind_address</span><br><span class="line"></span><br><span class="line"># 服务绑定的端口号</span><br><span class="line">#port 1883</span><br><span class="line"></span><br><span class="line"># 允许的最大连接数，-1表示没有限制</span><br><span class="line">#max_connections -1</span><br><span class="line"></span><br><span class="line"># cafile：CA证书文件</span><br><span class="line"># capath：CA证书目录</span><br><span class="line"># certfile：PEM证书文件</span><br><span class="line"># keyfile：PEM密钥文件</span><br><span class="line">#cafile</span><br><span class="line">#capath</span><br><span class="line">#certfile</span><br><span class="line">#keyfile</span><br><span class="line"></span><br><span class="line"># 必须提供证书以保证数据安全性</span><br><span class="line">#require_certificate false</span><br><span class="line"></span><br><span class="line"># 若require_certificate值为true，use_identity_as_username也必须为true</span><br><span class="line">#use_identity_as_username false</span><br><span class="line"></span><br><span class="line"># 启用PSK（Pre-shared-key）支持</span><br><span class="line">#psk_hint</span><br><span class="line"></span><br><span class="line"># SSL/TSL加密算法，可以使用“openssl ciphers”命令获取</span><br><span class="line"># as the output of that command.</span><br><span class="line">#ciphers</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Persistence</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 消息自动保存的间隔时间</span><br><span class="line">#autosave_interval 1800</span><br><span class="line"></span><br><span class="line"># 消息自动保存功能的开关</span><br><span class="line">#autosave_on_changes false</span><br><span class="line"></span><br><span class="line"># 持久化功能的开关</span><br><span class="line">persistence true</span><br><span class="line"></span><br><span class="line"># 持久化DB文件</span><br><span class="line">#persistence_file mosquitto.db</span><br><span class="line"></span><br><span class="line"># 持久化DB文件目录</span><br><span class="line">#persistence_location /var/lib/mosquitto/</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Logging</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 4种日志模式：stdout、stderr、syslog、topic</span><br><span class="line"># none 则表示不记日志，此配置可以提升些许性能</span><br><span class="line">log_dest none</span><br><span class="line"></span><br><span class="line"># 选择日志的级别（可设置多项）</span><br><span class="line">#log_type error</span><br><span class="line">#log_type warning</span><br><span class="line">#log_type notice</span><br><span class="line">#log_type information</span><br><span class="line"></span><br><span class="line"># 是否记录客户端连接信息</span><br><span class="line">#connection_messages true</span><br><span class="line"></span><br><span class="line"># 是否记录日志时间</span><br><span class="line">#log_timestamp true</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Security</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 客户端ID的前缀限制，可用于保证安全性</span><br><span class="line">#clientid_prefixes</span><br><span class="line"></span><br><span class="line"># 允许匿名用户</span><br><span class="line">#allow_anonymous true</span><br><span class="line"></span><br><span class="line"># 用户/密码文件，默认格式：username:password</span><br><span class="line">#password_file</span><br><span class="line"></span><br><span class="line"># PSK格式密码文件，默认格式：identity:key</span><br><span class="line">#psk_file</span><br><span class="line"></span><br><span class="line"># pattern write sensor/%u/data</span><br><span class="line"># ACL权限配置，常用语法如下：</span><br><span class="line"># 用户限制：user &lt;username&gt;</span><br><span class="line"># 话题限制：topic [read|write] &lt;topic&gt;</span><br><span class="line"># 正则限制：pattern write sensor/%u/data</span><br><span class="line">#acl_file</span><br><span class="line"></span><br><span class="line"># =================================================================</span><br><span class="line"># Bridges</span><br><span class="line"># =================================================================</span><br><span class="line"></span><br><span class="line"># 允许服务之间使用“桥接”模式（可用于分布式部署）</span><br><span class="line">#connection &lt;name&gt;</span><br><span class="line">#address &lt;host&gt;[:&lt;port&gt;]</span><br><span class="line">#topic &lt;topic&gt; [[[out | in | both] qos-level] local-prefix remote-prefix]</span><br><span class="line"></span><br><span class="line"># 设置桥接的客户端ID</span><br><span class="line">#clientid</span><br><span class="line"></span><br><span class="line"># 桥接断开时，是否清除远程服务器中的消息</span><br><span class="line">#cleansession false</span><br><span class="line"></span><br><span class="line"># 是否发布桥接的状态信息</span><br><span class="line">#notifications true</span><br><span class="line"></span><br><span class="line"># 设置桥接模式下，消息将会发布到的话题地址</span><br><span class="line"># $SYS/broker/connection/&lt;clientid&gt;/state</span><br><span class="line">#notification_topic</span><br><span class="line"></span><br><span class="line"># 设置桥接的keepalive数值</span><br><span class="line">#keepalive_interval 60</span><br><span class="line"></span><br><span class="line"># 桥接模式，目前有三种：automatic、lazy、once</span><br><span class="line">#start_type automatic</span><br><span class="line"></span><br><span class="line"># 桥接模式automatic的超时时间</span><br><span class="line">#restart_timeout 30</span><br><span class="line"></span><br><span class="line"># 桥接模式lazy的超时时间</span><br><span class="line">#idle_timeout 60</span><br><span class="line"></span><br><span class="line"># 桥接客户端的用户名</span><br><span class="line">#username</span><br><span class="line"></span><br><span class="line"># 桥接客户端的密码</span><br><span class="line">#password</span><br><span class="line"></span><br><span class="line"># bridge_cafile：桥接客户端的CA证书文件</span><br><span class="line"># bridge_capath：桥接客户端的CA证书目录</span><br><span class="line"># bridge_certfile：桥接客户端的PEM证书文件</span><br><span class="line"># bridge_keyfile：桥接客户端的PEM密钥文件</span><br><span class="line">#bridge_cafile</span><br><span class="line">#bridge_capath</span><br><span class="line">#bridge_certfile</span><br><span class="line">#bridge_keyfile</span><br><span class="line"></span><br><span class="line"># 自己的配置可以放到以下目录中</span><br></pre></td></tr></table></figure>
 <p>include_dir /etc/mosquitto/conf.d</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/30/mosqitto_mosquitto.conf_配置文件/" data-id="cjs0e5i5e000f64wglrw4kybi" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/02/11/三表关联查询/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/06/13/react-跨域-api/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">react-跨域-api</div>
-    </a>
-  
-</nav>
+                <hr>
+                
 
-  
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/02/14/三表关联查询/" data-toggle="tooltip" data-placement="top"
+                           title="">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/06/13/react-跨域-api/" data-toggle="tooltip" data-placement="top"
+                           title="react-跨域-api">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-溢出/">node,溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thymeleaf/">thymeleaf</a></li></ul>
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Yangsx 2019
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                </p>
+
+            </div>
+        </div>
     </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/node-溢出/" style="font-size: 10px;">node,溢出</a> <a href="/tags/thymeleaf/" style="font-size: 10px;">thymeleaf</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/02/11/三表关联查询/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/30/mosqitto_mosquitto.conf_配置文件/">mosquitto 配置文件说明</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/13/react-跨域-api/">react-跨域-api</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/05/mysql升级8-0后遇到的坑/">mysql升级8.0后遇到的坑</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/02/react-lifecycle/">react-lifecycle</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 Harvin Yang<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.tinma.cc/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<!-- Baidu Tongji -->
 
 
-<script src="/js/script.js"></script>
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
 
+  _st('install','','2.0.0');
+</script>
 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  </div>
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
 </body>
+
 </html>
